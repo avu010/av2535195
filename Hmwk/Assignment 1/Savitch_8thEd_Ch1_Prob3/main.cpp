@@ -17,8 +17,6 @@ using namespace std;
 
 //Execution Begins Here!
 
-//RUN FAILED when user inputs 0 in number of peas per pod due to division by zero
-
 int main(int argc, char** argv) {
     //Variable Declaration
     unsigned short numPod, peaPpod, totPea;
@@ -38,6 +36,7 @@ int main(int argc, char** argv) {
     cin>>peaPpod;
     
     //Calculation - Divide number of pods by peas per pod 
+    //RUN FAILED when user inputs 0 in number of peas per pod due to division by zero
     totPea=numPod/peaPpod;
     
     //Output Simple Text
