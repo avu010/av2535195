@@ -52,6 +52,8 @@ int main(int argc, char** argv) {
     prod=int1*int2;
     
 //Output Text
+//Error Omit ';'
+//main.cpp:58:5: error: expected ';' before 'cout'
     cout<<"\nThe sum of the integers is "<<sum<<endl;
     cout<<"and the product of the integers is "<<prod<<"."<<endl;
     cout<<"\nThis is the end of the program.\n";
