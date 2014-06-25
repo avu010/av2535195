@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
     //Input Data
     cin>>peaPpod;
     
-    //Calculation - Multiply number of pods by peas per pod to get total pods
+    //Calculation - Divide number of pods by peas per pod 
     totPea=numPod/peaPpod;
     
     //Output Simple Text
