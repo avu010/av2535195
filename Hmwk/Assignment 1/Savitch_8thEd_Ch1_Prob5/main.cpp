@@ -38,8 +38,9 @@ int main(int argc, char** argv) {
     prod=int1*int2;
     
 //Output Text
-    cout<<"The sum of the integers is "<<sum<<endl;
+    cout<<"\nThe sum of the integers is "<<sum<<endl;
     cout<<"and the product of the integers is "<<prod<<"."<<endl;
+    cout<<"\nThis is the end of the program.\n";
     
 //Exit Stage Right!
     return 0;
