@@ -17,7 +17,6 @@ using namespace std;
 
 //Execution Begins Here!
 int main(int argc, char** argv) {
-
 //Output Border
     cout<<"*******************************************************\n";
     cout<<endl;
@@ -34,6 +33,8 @@ int main(int argc, char** argv) {
     cout<<"*******************************************************\n";
     cout<< endl;
     cout<<"Computer Science is Cool Stuff!!!\n";
+    
+//Exit Stage Right!
     return 0;
 }
 
