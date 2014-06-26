@@ -5,7 +5,7 @@
  * Created on June 25, 2014, 4:31 PM
  */
 
-//System Libraries
+//System Level Libraries
 #include <iostream>
 using namespace std;
 
@@ -17,7 +17,7 @@ using namespace std;
 
 //Execution Begins Here!
 int main(int argc, char** argv) {
-//Output Border
+//Output Border and message
     cout<<"*******************************************************\n";
     cout<<endl;
     cout<<"            C C C          S S S S       !!\n";

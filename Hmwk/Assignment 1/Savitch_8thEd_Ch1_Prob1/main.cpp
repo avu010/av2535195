@@ -18,7 +18,7 @@ using namespace std;
 //Execution Begins Here!
 int main(int argc, char** argv) {
     //Variable Declaration
-    unsigned short numPod, peaPpod, totPea;
+    unsigned short numPod, peaPpod, totPea; //number of pods, peas per pod, and total peas
     
     //Output Simple Text
     cout<<"Press return after entering a number.\n";
@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
     //Calculation - Multiply number of pods by peas per pod to get total pods
     totPea=numPod*peaPpod;
     
-    //Output Simple Text
+    //Output Result
     cout<<"If you have ";
     cout<<numPod;
     cout<<" pea pods\n";
