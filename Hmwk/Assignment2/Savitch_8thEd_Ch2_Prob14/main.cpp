@@ -48,8 +48,7 @@ int main(int argc, char** argv) {
     cout<<"\nDear Instructor "<<inst<<",\n";
     cout<<"I am sorry that I am unable to turn in my homework at this time. First,\n";
     cout<<"I ate a rotten "<<food<<","<<" which made me turn "<<col<<"and extremely ill. I\n";
-    cout<<"came down with a fever of "<<num<<". Next, my "<< adj<<" pet ";
-    cout<<anim<<" must have smelled\n";
+    cout<<"came down with a fever of "<<num<<". Next, my "<< adj<<" pet "<<anim<<"must have smelled\n";
     cout<<"the remains of the "<<food<<" on my homework, because he ate it.\n";
     cout<<"I am currently reviewing my homework and hope you will accept it late.\n";
     cout<<endl;
