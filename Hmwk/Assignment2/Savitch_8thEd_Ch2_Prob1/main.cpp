@@ -18,29 +18,26 @@ using namespace std;
 //Execution Beings Here:
 int main(int argc, char** argv) {
 //Declare and Initialize Variables
-    float wght;              //Weight of a package of breakfast cereal in ounces
-    float nBox;              //Number of boxes equal to 1 metric ton of cereal
-    float mTon;              //Metric ton
+    float wgtOz;              //Weight of a package in ounces
+    float wgtTn;              //Weight of a package in metric tons
+    float nBoxT;              //Number of boxes equal to 1 metric ton of cereal
+    float tOz=35273.92f;      //Metric ton in ounce
     
-//Do-While Statement
-    do {
+//Output Text and Input Data
         cout<<"Please enter the weight of the package of breakfast cereal in ounces.";
         cout<<" Then hit the return key.\n";
-        cin>>wght;
-        mTon=wght*35273.92;
+        cin>>wgtOz;
+        wgtTn=wgtOz/tOz;     //Calculate weight of box in metric tons
         
         cout.setf(ios::fixed);
-        cout.setf(ios::showpoint);
-        cout.precision(2);
-        cout<<"The weight of the package in metric tons is "<<mTon<<"!"<<endl;
+        cout.precision(10);
+        cout<<"The weight of the package in metric tons is "<<wgtTn<<"!"<<endl;
         
-        nBox=35273.92/wght;
+        nBoxT=tOz/wgtOz;    //Calculate number of boxes equal to 1 metric ton
         cout.precision(2);
-        cout<<nBox<<" boxes will yield 1 metric ton of cereal.\n";
-    }
-    while(wght==wght);
+        cout<<nBoxT<<" boxes will yield 1 metric ton of cereal.\n";
+   
     
     
     return 0;
 }
-
