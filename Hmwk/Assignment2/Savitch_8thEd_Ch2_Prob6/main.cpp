@@ -18,10 +18,12 @@ using namespace std;
 //Execution Begins Here:
 int main(int argc, char** argv) {
 //Declare Variables
+    //Input
     unsigned short mRcap;       //Maximum Room Capacity
     unsigned short nPpl;        //Number of People
+    //Output
     unsigned short addPpl;      //Number of additional people that may legally attend
-    unsigned short exPpl;      //Number of people that must be excluded
+    unsigned short exPpl;       //Number of people that must be excluded
    
 //Output Text and Input Data
     cout<<"Please enter the maximum room capacity. Then hit return key.\n";
@@ -30,16 +32,17 @@ int main(int argc, char** argv) {
     cin>>nPpl;             //Input number of people at meeting
     
 //Determine whether or not it is legal to hold number of people at meeting
-    //If else statement - true statement is that number of people is less than or equal to max room cap.
+    //Number of people is less or equal than max room capacity is true
     if (nPpl<=mRcap){
-    //additional people allowed in meeting is max room cap minus number of people
+    //Calculate additional people allowed in meeting
     addPpl=mRcap-nPpl;
     cout<<"It is legal to hold the meeting, and an additional "<<addPpl;
     cout<<" people are allowed to attend.\n";
     }
     
+    //Number of people exceeding max room capacity is false
     else {
-    //People that must be excluded is the number of people minus maximum room capacity.
+    //Calculate number of people that must be excluded 
     exPpl=nPpl-mRcap;
     cout<<"The meeting cannot be held as planned due to fire regulations.\n";
     cout<<"In order to hold the meeting, "<<exPpl<<" people must leave the room.\n";
@@ -48,4 +51,3 @@ int main(int argc, char** argv) {
 //Exit Stage Right!
     return 0;
 }
-
