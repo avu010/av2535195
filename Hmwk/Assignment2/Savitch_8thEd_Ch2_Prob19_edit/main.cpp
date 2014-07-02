@@ -24,8 +24,8 @@ int main(int argc, char** argv) {
     unsigned short scrRec;   //Score received
     unsigned short tPts;     //Total points possible
     //Output
-    float SscrRec;           //Summation of scores received
-    float StPts;             //Summation of total points possible
+    float SscrRec=0;         //Summation of scores received
+    float StPts=0;           //Summation of total points possible
     float perc;              //Percentage
     
 //Gather Data Input
@@ -55,8 +55,7 @@ perc=(SscrRec/StPts)*100;
     cout<<"Your total is "<<SscrRec<<" out of "<<StPts;
     cout<<fixed<<showpoint<<setprecision(2);
     cout<<", or "<<perc<<"%.";
-    
 
+//Exit Stage Right!
     return 0;
 }
-
