@@ -20,9 +20,12 @@ const float MYRS=1.0f/12.0f;   //1Year is equal to 12 months, 1Yr/12Months
 //Execution Beings Here:
 int main(int argc, char** argv) {
 //Declare and Initialize Variables
-    const float pInc=7.6e-2;   //Pay Increase is 7.6%
+    //Known
+    float pInc=7.6e-2;   //Pay Increase is 7.6%
+    //Input
     unsigned short nMon;       //Number of retroactive months
     float oAnSal;              //Old Annual Salary
+    //Output
     float nAnSal;              //New Annual Salary
     float mSal;                //New Monthly Salary
     float retP;                //Retroactive Pay
