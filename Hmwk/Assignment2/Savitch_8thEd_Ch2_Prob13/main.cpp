@@ -20,7 +20,7 @@ using namespace std;
 
 //Execution Begins Here:
 int main(int argc, char** argv) {
-//Declare variable
+//Declare variables
     float mph;                     //Miles per hour
     float fMin;                    //Minutes as float
     unsigned short iMin;           //Minutes as integer
@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
     cout<<fixed<<showpoint<<setprecision(1);
     cout<<fSec<<" seconds per mile.\n";
             
-          
+//Exit Stage Right!
     return 0;
 }
 
