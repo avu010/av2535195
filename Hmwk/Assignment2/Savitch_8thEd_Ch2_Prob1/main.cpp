@@ -7,6 +7,7 @@
 
 //System Level Libraries
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 //User Libraries
@@ -18,26 +19,31 @@ using namespace std;
 //Execution Beings Here:
 int main(int argc, char** argv) {
 //Declare and Initialize Variables
-    float wgtOz;              //Weight of a package in ounces
-    float wgtTn;              //Weight of a package in metric tons
-    float nBoxT;              //Number of boxes equal to 1 metric ton of cereal
-    float tOz=35273.92f;      //Metric ton in ounce
+    //Input
+    float wgtOz;             //Weight of a package in ounces
+    //Output
+    float wgtTn;             //Weight of a package in metric tons
+    float nBoxT;             //Number of boxes equal to 1 metric ton of cereal
+    //Conversion
+    float tOz=35273.92f;     //1 Metric ton in ounces
     
 //Output Text and Input Data
         cout<<"Please enter the weight of the package of breakfast cereal in ounces.";
         cout<<" Then hit the return key.\n";
         cin>>wgtOz;
-        wgtTn=wgtOz/tOz;     //Calculate weight of box in metric tons
         
-        cout.setf(ios::fixed);
-        cout.precision(10);
+//Calculate weight of box in metric tons
+        wgtTn=wgtOz/tOz;
+        
+//Calculate number of boxes equal to 1 metric ton
+        nBoxT=tOz/wgtOz;    
+        
+//Output Results
+        cout<<fixed<<showpoint<<setprecision(6);
         cout<<"The weight of the package in metric tons is "<<wgtTn<<"!"<<endl;
-        
-        nBoxT=tOz/wgtOz;    //Calculate number of boxes equal to 1 metric ton
-        cout.precision(2);
+        cout<<fixed<<showpoint<<setprecision(2);
         cout<<nBoxT<<" boxes will yield 1 metric ton of cereal.\n";
-   
-    
-    
+       
+//Exit Stage Right!
     return 0;
 }
