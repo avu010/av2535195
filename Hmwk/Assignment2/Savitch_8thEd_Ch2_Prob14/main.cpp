@@ -1,13 +1,12 @@
 /* 
  * File:   main.cpp
  * Author: Anh Vu
- * Purpose: Savitch Ch1 Prob14
+ * Purpose: Savitch Ch2 Prob14
  * Created on June 26, 2014, 12:32 PM
  */
 
 //System Level Libraries
 #include <iostream>
-
 using namespace std;
 
 //User Libraries
@@ -19,13 +18,13 @@ using namespace std;
 //Execution Begins Here:
 int main(int argc, char** argv) {
 //Declare Variables
-    string inst; //Declare name of instructor
-    string name; //Declare name of user
-    string food; //Declare food
-    string adj;  //Declare adjective
-    string col;  //Declare color
-    string anim; //Declare animal
-    int num;     //Declare number between 100 and 120
+    string inst; //Name of instructor
+    string name; //Name of user
+    string food; //Food
+    string adj;  //Adjective
+    string col;  //Color
+    string anim; //Animal
+    int num;     //Number between 100 and 120
     
 //Ouput Text and Input Data from user
     cout<<"Enter the first or last name of your instructor: ";
