@@ -19,18 +19,18 @@ using namespace std;
 int main(int argc, char** argv) {
 //Declare Variables
     //Input 
-    unsigned short month;       
-    unsigned short day;
-    char choice;
+    unsigned short month;       //Month of user's birthday
+    unsigned short day;         //Day of user's birthday
+    char choice;                //Whether user wants to run program again (Y/N)
     
-//Determine Horoscope sign with if-else statements
-    do{ 
+//Run loop using do while so user can keep running program until he or she is done.
+    do{                 
 //Gather Data Input
     cout<<"Enter the month of your birthday (1-12): ";
     cin>>month;
     cout<<"Enter the day of your birthday (1-31): ";
     cin>>day;
-    
+//If else statements used to determine horoscope
     if(month==1){
         if((day==18)||(day==19)){
             cout<<"Your sign is Capricorn, but ";
@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
             cout<<"Your sign is Aquarius, but ";
             cout<<"your birthday is on a cusp, meaning that your sign ";
             cout<<"could also be Capricorn.";
-       }else if(day>20)
+        }else if(day>20)
            cout<<"Your sign is Aquarius.";
         else if(day<19)
            cout<<"Your sign is Capricorn.";      
@@ -53,7 +53,7 @@ int main(int argc, char** argv) {
             cout<<"Your sign is Pisces, but ";
             cout<<"your birthday is on a cusp, meaning that your sign ";
             cout<<"could also be Aquarius.";
-       }else if(day>19)
+        }else if(day>19)
            cout<<"Your sign is Pisces.";
         else if(day<18)
            cout<<"Your sign is Aquarius.";
@@ -66,7 +66,7 @@ int main(int argc, char** argv) {
             cout<<"Your sign is Aries, but ";
             cout<<"your birthday is on a cusp, meaning that your sign ";
             cout<<"could also be Pisces.";
-       }else if(day>21)
+        }else if(day>21)
            cout<<"Your sign is Aries.";
         else if(day<20)
            cout<<"Your sign is Pisces.";
@@ -79,7 +79,7 @@ int main(int argc, char** argv) {
             cout<<"Your sign is Taurus, but ";
             cout<<"your birthday is on a cusp, meaning that your sign ";
             cout<<"could also be Aries.";
-       }else if(day>20)
+        }else if(day>20)
            cout<<"Your sign is Taurus.";
         else if(day<19)
            cout<<"Your sign is Aries.";
@@ -92,7 +92,7 @@ int main(int argc, char** argv) {
             cout<<"Your sign is Gemini, but ";
             cout<<"your birthday is on a cusp, meaning that your sign ";
             cout<<"could also be Taurus.";
-       }else if(day>21)
+        }else if(day>21)
            cout<<"Your sign is Gemini.";
         else if(day<20)
            cout<<"Your sign is Taurus.";
@@ -105,7 +105,7 @@ int main(int argc, char** argv) {
             cout<<"Your sign is Cancer, but ";
             cout<<"your birthday is on a cusp, meaning that your sign ";
             cout<<"could also be Gemini.";
-       }else if(day>22)
+        }else if(day>22)
            cout<<"Your sign is Cancer.";
         else if(day<21)
            cout<<"Your sign is Gemini.";
@@ -118,7 +118,7 @@ int main(int argc, char** argv) {
             cout<<"Your sign is Leo, but ";
             cout<<"your birthday is on a cusp, meaning that your sign ";
             cout<<"could also be Cancer.";
-       }else if(day>23)
+        }else if(day>23)
            cout<<"Your sign is Leo.";
         else if(day<22)
            cout<<"Your sign is Cancer.";
@@ -131,7 +131,7 @@ int main(int argc, char** argv) {
             cout<<"Your sign is Virgo, but ";
             cout<<"your birthday is on a cusp, meaning that your sign ";
             cout<<"could also be Leo.";
-       }else if(day>23)
+        }else if(day>23)
            cout<<"Your sign is Virgo.";
         else if(day<22)
            cout<<"Your sign is Leo.";
@@ -144,7 +144,7 @@ int main(int argc, char** argv) {
             cout<<"Your sign is Libra, but ";
             cout<<"your birthday is on a cusp, meaning that your sign ";
             cout<<"could also be Virgo.";
-       }else if(day>23)
+        }else if(day>23)
            cout<<"Your sign is Leo.";
         else if(day<22)
            cout<<"Your sign is Virgo.";
@@ -157,7 +157,7 @@ int main(int argc, char** argv) {
             cout<<"Your sign is Scorpio, but ";
             cout<<"your birthday is on a cusp, meaning that your sign ";
             cout<<"could also be Libra.";
-       }else if(day>23)
+        }else if(day>23)
            cout<<"Your sign is Scorpio.";
         else if(day<22)
            cout<<"Your sign is Libra.";
@@ -170,7 +170,7 @@ int main(int argc, char** argv) {
             cout<<"Your sign is Sagittarius, but ";
             cout<<"your birthday is on a cusp, meaning that your sign ";
             cout<<"could also be Scorpio.";
-       }else if(day>22)
+        }else if(day>22)
            cout<<"Your sign is Sagittarius.";
         else if(day<21)
            cout<<"Your sign is Scorpio.";
@@ -183,7 +183,7 @@ int main(int argc, char** argv) {
             cout<<"Your sign is Capricorn, but ";
             cout<<"your birthday is on a cusp, meaning that your sign ";
             cout<<"could also be Sagittarius.";
-       }else if(day>22)
+        }else if(day>22)
            cout<<"Your sign is Capricorn.";
         else if(day<21)
            cout<<"Your sign is Sagittarius.";
@@ -194,7 +194,11 @@ int main(int argc, char** argv) {
        cin>>choice;
        cout<<endl;
     }
+//If user chooses 'Y' or 'y', then program will run again. 
+//If not, program will end.
     while((choice=='Y')||(choice=='y'));
+    
+//Exit Stage Right!
     return 0;
 }
 
