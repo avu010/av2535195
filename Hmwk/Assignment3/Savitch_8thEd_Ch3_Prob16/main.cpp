@@ -18,8 +18,8 @@ using namespace std;
 //Execution Begins Here:
 int main(int argc, char** argv) {
 //Declare and Initialize Variables
-    int cel=100;                 //Celsius
-    int far;                     //Fahrenheit
+    short cel=100;                 //Celsius
+    short far;                     //Fahrenheit
 
 //Decrement Celsius value until temperature is same in both Celsius and Fahrenheit
     while(cel!=far){
