@@ -21,20 +21,21 @@ int main(int argc, char** argv) {
     //Input 
     unsigned short month;       
     unsigned short day;
+    char choice;
     
+//Determine Horoscope sign with if-else statements
+    do{ 
 //Gather Data Input
     cout<<"Enter the month of your birthday (1-12): ";
     cin>>month;
     cout<<"Enter the day of your birthday (1-31): ";
     cin>>day;
     
-//Determine Horoscope sign with if-else statements
     if(month==1){
         if((day==18)||(day==19)){
             cout<<"Your sign is Capricorn, but ";
             cout<<"your birthday is on a cusp, meaning that your sign ";
             cout<<"could also be Aquarius."; 
-        
         }else if((day==20)||(day==21)){
             cout<<"Your sign is Aquarius, but ";
             cout<<"your birthday is on a cusp, meaning that your sign ";
@@ -121,8 +122,79 @@ int main(int argc, char** argv) {
            cout<<"Your sign is Leo.";
         else if(day<22)
            cout<<"Your sign is Cancer.";
-    }     
-     
+    }else if (month==8){
+        if((day==21)||(day==22)){
+            cout<<"Your sign is Leo, but ";
+            cout<<"your birthday is on a cusp, meaning that your sign ";
+            cout<<"could also be Virgo.";   
+        }else if((day==23)||(day==24)){
+            cout<<"Your sign is Virgo, but ";
+            cout<<"your birthday is on a cusp, meaning that your sign ";
+            cout<<"could also be Leo.";
+       }else if(day>23)
+           cout<<"Your sign is Virgo.";
+        else if(day<22)
+           cout<<"Your sign is Leo.";
+    }else if (month==9){
+        if((day==21)||(day==22)){
+            cout<<"Your sign is Virgo, but ";
+            cout<<"your birthday is on a cusp, meaning that your sign ";
+            cout<<"could also be Libra.";   
+        }else if((day==23)||(day==24)){
+            cout<<"Your sign is Libra, but ";
+            cout<<"your birthday is on a cusp, meaning that your sign ";
+            cout<<"could also be Virgo.";
+       }else if(day>23)
+           cout<<"Your sign is Leo.";
+        else if(day<22)
+           cout<<"Your sign is Virgo.";
+    }else if (month==10){
+        if((day==21)||(day==22)){
+            cout<<"Your sign is Libra, but ";
+            cout<<"your birthday is on a cusp, meaning that your sign ";
+            cout<<"could also be Scorpio.";   
+        }else if((day==23)||(day==24)){
+            cout<<"Your sign is Scorpio, but ";
+            cout<<"your birthday is on a cusp, meaning that your sign ";
+            cout<<"could also be Libra.";
+       }else if(day>23)
+           cout<<"Your sign is Scorpio.";
+        else if(day<22)
+           cout<<"Your sign is Libra.";
+    }else if (month==11){
+        if((day==20)||(day==21)){
+            cout<<"Your sign is Scorpio, but ";
+            cout<<"your birthday is on a cusp, meaning that your sign ";
+            cout<<"could also be Sagittarius.";   
+        }else if((day==22)||(day==23)){
+            cout<<"Your sign is Sagittarius, but ";
+            cout<<"your birthday is on a cusp, meaning that your sign ";
+            cout<<"could also be Scorpio.";
+       }else if(day>22)
+           cout<<"Your sign is Sagittarius.";
+        else if(day<21)
+           cout<<"Your sign is Scorpio.";
+    }else if (month==12){
+        if((day==20)||(day==21)){
+            cout<<"Your sign is Sagittarius, but ";
+            cout<<"your birthday is on a cusp, meaning that your sign ";
+            cout<<"could also be Capricorn.";   
+        }else if((day==22)||(day==23)){
+            cout<<"Your sign is Capricorn, but ";
+            cout<<"your birthday is on a cusp, meaning that your sign ";
+            cout<<"could also be Sagittarius.";
+       }else if(day>22)
+           cout<<"Your sign is Capricorn.";
+        else if(day<21)
+           cout<<"Your sign is Sagittarius.";
+    }  
+//Ask user if he or she wants to run program again:
+       cout<<endl;
+       cout<<"\nRun again? (Y/N): ";
+       cin>>choice;
+       cout<<endl;
+    }
+    while((choice=='Y')||(choice=='y'));
     return 0;
 }
 
