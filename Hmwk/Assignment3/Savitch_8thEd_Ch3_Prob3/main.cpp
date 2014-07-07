@@ -108,6 +108,19 @@ int main(int argc, char** argv) {
            cout<<"Your sign is Cancer.";
         else if(day<21)
            cout<<"Your sign is Gemini.";
+    }else if (month==7){
+        if((day==21)||(day==22)){
+            cout<<"Your sign is Cancer, but ";
+            cout<<"your birthday is on a cusp, meaning that your sign ";
+            cout<<"could also be Leo.";   
+        }else if((day==23)||(day==24)){
+            cout<<"Your sign is Leo, but ";
+            cout<<"your birthday is on a cusp, meaning that your sign ";
+            cout<<"could also be Cancer.";
+       }else if(day>23)
+           cout<<"Your sign is Leo.";
+        else if(day<22)
+           cout<<"Your sign is Cancer.";
     }     
      
     return 0;
