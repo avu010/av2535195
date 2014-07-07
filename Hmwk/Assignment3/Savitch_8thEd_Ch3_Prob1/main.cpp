@@ -26,6 +26,9 @@ int main(int argc, char** argv) {
 //Acquire data input
     cout<<"Welcome to the paper-rock-scissor game!\n";
     cout<<endl;
+               
+//Determine winner and explanation
+    do{
     cout<<"Player 1 - Choose R for rock, P for paper, or S for scissors ";
     cout<<"and hit return key: ";
     cin>>plyr1;
@@ -33,9 +36,7 @@ int main(int argc, char** argv) {
     cout<<"and hit return key: ";
     cin>>plyr2;
     cout<< endl;
-              
-//Determine winner and explanation
-    do{
+    
     if (((plyr1='P')||(plyr1='p'))&&((plyr2='R')||(plyr2='r')))
         cout<<"The winner is Paper! Paper covers rock.";
   
