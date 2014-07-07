@@ -26,13 +26,13 @@ int main(int argc, char** argv) {
     //Decrement Celsius
     cel--;
     //Calculate Fahrenheit
-    far=9*cel/5+32;       
+    far=9*cel/5+32; 
     }
  
     //Output Result
-    cout<<"Celsius = Fahrenheit at "<<cel<<" degrees."<<endl;
+    cout<<"The value at which the Celsius and Fahrenheit temperature is the ";
+    cout<<"same is at "<<cel<<" degrees."<<endl;
     
     //Exit Stage Right!
     return 0;
 }
-
