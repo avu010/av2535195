@@ -29,6 +29,7 @@ int main(int argc, char** argv) {
                
 //Determine winner and explanation
     do{
+        
     cout<<"Player 1 - Choose R for rock, P for paper, or S for scissors ";
     cout<<"and hit return key: ";
     cin>>plyr1;
