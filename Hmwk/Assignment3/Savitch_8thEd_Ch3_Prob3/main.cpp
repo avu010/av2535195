@@ -145,7 +145,7 @@ int main(int argc, char** argv) {
             cout<<"your birthday is on a cusp, meaning that your sign ";
             cout<<"could also be Virgo.";
         }else if(day>23)
-           cout<<"Your sign is Leo.";
+           cout<<"Your sign is Libra.";
         else if(day<22)
            cout<<"Your sign is Virgo.";
     }else if (month==10){
