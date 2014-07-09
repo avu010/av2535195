@@ -20,21 +20,24 @@ using namespace std;
 int main(int argc, char** argv) {
 //Declare Variables
     //Input
-    unsigned short height;               //height in inches
-    unsigned short weight;               //weight in pounds
-    unsigned short age;                  //age in years
+    float height;               //height in inches
+    float weight;               //weight in pounds
+    float age;                  //age in years
+    char choice;                //Whether user wants to run again
     //Output
     float hatS;                           //hat size
     unsigned short jcktS;                 //jacket size
     float waist;                          //waist in inches
     
-//Gather Input Data
+do{
+    //Gather Input Data
     cout<<"Enter height (inches): ";
     cin>>height;
     cout<<"Enter weight (pounds): ";
     cin>>weight;
     cout<<"Enter age (years): ";
     cin>>age;
+    cout<<endl;
     
 //Calculate hat size
     hatS=(2.9)*(weight/height);
@@ -56,12 +59,18 @@ int main(int argc, char** argv) {
         waist += .1;
         age3-=2;
     }  
-    
+
 //Output Results
+    cout<<fixed<<showpoint<<setprecision(1);
     cout<<"Hat size: "<<hatS<<endl;
     cout<<"Jacket size: "<<jcktS<<endl;
-    cout<<fixed<<showpoint<<setprecision(2);
-    cout<<"Waist (in): "<<waist<<endl;
+    cout<<"Waist (in.): "<<waist<<endl;  
+    
+//Ask user if he or she wants to run program again
+    cout<<"Run again (Y/N)? ";
+    cin>>choice;
+    cout<<endl;
+}while(choice=='Y'||choice=='y');
     
 //Exit Stage Right!
     return 0;
