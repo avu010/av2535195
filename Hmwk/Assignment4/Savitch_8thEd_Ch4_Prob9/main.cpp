@@ -7,6 +7,7 @@
 
 //System Level Libraries
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 //User Libraries
@@ -40,7 +41,7 @@ int main(int argc, char** argv) {
     
 //Calculate jacket size
     jcktS=(height*weight)/288;
-    unsigned short age2 = age - 30;
+    short age2 = age - 30;
     while(age2>=10){
         //Jacket adjustment for 40+
         jcktS += .125;
@@ -49,7 +50,7 @@ int main(int argc, char** argv) {
     
 //Calculate waist in inches
     waist=weight/5.7;
-    unsigned short age3 = age - 28;
+    short age3 = age - 28;
     while(age3>=2){
         //Waist adjustment for age 30+
         waist += .1;
@@ -59,6 +60,7 @@ int main(int argc, char** argv) {
 //Output Results
     cout<<"Hat size: "<<hatS<<endl;
     cout<<"Jacket size: "<<jcktS<<endl;
+    cout<<fixed<<showpoint<<setprecision(2);
     cout<<"Waist (in): "<<waist<<endl;
     
 //Exit Stage Right!
