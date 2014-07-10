@@ -18,7 +18,7 @@ using namespace std;
 
 //Execution Begins Here:
 int main(int argc, char** argv) {
-//Declare Variables
+    //Declare Variables
     //Input
     float height;               //height in inches
     float weight;               //weight in pounds
@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
     unsigned short jcktS;                 //jacket size
     float waist;                          //waist in inches
     
-do{
+    do{
     //Gather Input Data
     cout<<"Enter height (inches): ";
     cin>>height;
@@ -39,40 +39,40 @@ do{
     cin>>age;
     cout<<endl;
     
-//Calculate hat size
+    //Calculate hat size
     hatS=(2.9)*(weight/height);
     
-//Calculate jacket size
-    jcktS=(height*weight)/288;
-    short age2 = age - 30;
-    while(age2>=10){
-        //Jacket adjustment for 40+
-        jcktS += .125;
-        age2-=10;
-    }
-    
-//Calculate waist in inches
-    waist=weight/5.7;
-    short age3 = age - 28;
-    while(age3>=2){
-        //Waist adjustment for age 30+
-        waist += .1;
-        age3-=2;
-    }  
+    //Calculate jacket size
+        jcktS=(height*weight)/288;
+        short age2 = age - 30;
+        while(age2>=10){
+            //Jacket adjustment for 40+
+            jcktS += .125;
+            age2-=10;
+        }
 
-//Output Results
-    cout<<fixed<<showpoint<<setprecision(1);
-    cout<<"Hat size: "<<hatS<<endl;
-    cout<<"Jacket size: "<<jcktS<<endl;
-    cout<<"Waist (in.): "<<waist<<endl;  
+        //Calculate waist in inches
+        waist=weight/5.7;
+        short age3 = age - 28;
+        while(age3>=2){
+            //Waist adjustment for age 30+
+            waist += .1;
+            age3-=2;
+        }  
+
+        //Output Results
+        cout<<fixed<<showpoint<<setprecision(1);
+        cout<<"Hat size: "<<hatS<<endl;
+        cout<<"Jacket size: "<<jcktS<<endl;
+        cout<<"Waist (in.): "<<waist<<endl;  
+
+        //Ask user if he or she wants to run program again
+        cout<<"Run again (Y/N)? ";
+        cin>>choice;
+        cout<<endl;
+    }while(choice=='Y'||choice=='y');
     
-//Ask user if he or she wants to run program again
-    cout<<"Run again (Y/N)? ";
-    cin>>choice;
-    cout<<endl;
-}while(choice=='Y'||choice=='y');
-    
-//Exit Stage Right!
+    //Exit Stage Right!
     return 0;
 }
 

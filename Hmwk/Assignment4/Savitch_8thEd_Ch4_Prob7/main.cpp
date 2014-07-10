@@ -19,7 +19,7 @@ const float G=6.673e-8f;       //Universal gravitational constant cm^3/(g*sec^2)
 
 //Execution Begins Here:
 int main(int argc, char** argv) {
-//Declare Variables
+    //Declare Variables
     //Input
     float m1;           //Mass of object 1 in g
     float m2;           //Mass of object 2 in g
@@ -28,32 +28,30 @@ int main(int argc, char** argv) {
     //Output
     float F;            //Gravitational attractive force between two bodies
     
-do{
+    do{   
+        //Gather Data Input
+        cout<<"Enter mass for first object (grams): ";
+        cin>>m1;
+        cout<<"Enter mass for second object (grams): ";
+        cin>>m2;
+        cout<<"Enter distance between object 1 and object 2 (cm): ";
+        cin>>d;
+        cout<<endl;
+
+        //Calculate gravitational attractive force
+        F=G*m1*m2/(d*d);
+
+        //Output Result
+        cout<<"Gravitational force between object 1 and object 2: "<<F<<" dynes\n";
+        cout<<"Note: 1 dyne = g*cm/(sec*sec)\n";
+
+        //Ask if user wants to run again
+        cout<<"Run again (Y/N)? ";
+        cin>>choice;
+        cout<<endl;   
+    }while(choice=='Y'||choice=='y');
     
-//Gather Data Input
-    cout<<"Enter mass for first object (grams): ";
-    cin>>m1;
-    cout<<"Enter mass for second object (grams): ";
-    cin>>m2;
-    cout<<"Enter distance between object 1 and object 2 (cm): ";
-    cin>>d;
-    cout<<endl;
-    
-//Calculate gravitational attractive force
-    F=G*m1*m2/(d*d);
-    
-//Output Result
-    cout<<"Gravitational force between object 1 and object 2: "<<F<<" dynes\n";
-    cout<<"Note: 1 dyne = g*cm/(sec*sec)\n";
-    
-//Ask if user wants to run again
-    cout<<"Run again (Y/N)? ";
-    cin>>choice;
-    cout<<endl;
-    
-}while(choice=='Y'||choice=='y');
-    
-//Exit Stage Right
+    //Exit Stage Right
     return 0;
 }
 
