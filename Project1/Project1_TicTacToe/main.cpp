@@ -16,14 +16,18 @@ using namespace std;
 //Global Constants
 
 //Function Prototypes
+void displayGrid(char []);
+void takeTurn(char[], bool);
+bool gameOver(char[]);
+
 
 //Execution Begins Here:
 int main(int argc, char** argv) {
     //Declare Variables
-    unsigned short choice;          //Where player chooses to place mark
     char plyr1='X';                 //Player 1
     char plyr2='O';                 //Player 2
-    char grid[10]={'x','1','2','3','4','5','6','7','8','9'};
+    const int SIZE=10;
+    char grid[SIZE]={'x','1','2','3','4','5','6','7','8','9'};
     
     //Welcome player and output which player is what mark
     cout<<"Welcome to Tic-Tac-Toe! Who will play first will be randomly chosen...";
@@ -45,6 +49,24 @@ int main(int argc, char** argv) {
         cout<<endl<<endl;
     }
     
+    //Gameplay
+    do{
+        displayGrid(grid);
+        takeTurn(grid,first);
+        if(first){
+            first=false;
+        }
+        else{
+            first=true;
+        }
+                
+    }while(!gameOver(grid));    
+    //Exit Stage Right!
+    return 0;
+}
+
+
+void displayGrid(char grid[]){
     //Output 3x3 grid and explain to user what to do
     cout<<"          |          |          "<<endl;
     cout<<"    "<<grid[1]<<"     |    "<<grid[2]<<"     |    "<<grid[3]<<endl;
@@ -55,13 +77,55 @@ int main(int argc, char** argv) {
     cout<<"          |          |          "<<endl;
     cout<<"    "<<grid[7]<<"     |    "<<grid[8]<<"     |    "<<grid[9]<<endl;
     cout<<"          |          |          "<<endl;
-    
+}
+void takeTurn(char grid[], bool p1){
+    unsigned short choice;
     //Gather Data Input
-    cout<<"Enter number: ";
-    cin>>choice;
+    do{
+        if(p1){
+            cout<<"Player 1, ";
+        }
+        else{
+            cout<<"Player 2, ";
+        }
+        cout<<"enter number: ";
+        cin>>choice;
+    }while(choice>9||choice<1||grid[choice]!=(choice+'0'));
     
-    //
-    //Exit Stage Right!
-    return 0;
+    if(p1){
+        grid[choice] = 'X';
+    }
+    else{
+        grid[choice] = 'O';
+    }
+                            
+}
+bool gameOver(char grid[]){
+    //Declare Variables
+    bool over=false;
+    //Determine if game is over
+    for(int i=0;i<10;i++){
+        if(grid[i]<='9'&&grid[i]>='0')
+            over=true;
+    }
+    if((grid[1]==grid[2])&&(grid[1]==grid[3]))
+        over=true;
+    else if((grid[4]==grid[5])&&(grid[4]==grid[6]))
+        over=true;
+    else if((grid[7]==grid[8])&&(grid[7]==grid[9]))
+        over=true;
+    else if((grid[1]==grid[4])&&(grid[1]==grid[5]))
+        over=true;
+    else if((grid[2]==grid[5])&&(grid[2]==grid[8]))
+        over=true;
+    else if((grid[3]==grid[6])&&(grid[3]==grid[9]))
+        over=true;
+    else if((grid[1]==grid[5])&&(grid[1]==grid[9]))
+        over=true;
+    else if((grid[3]==grid[5])&&(grid[3]==grid[8]))
+        over=true;
+    
+    return over;
+
 }
 
