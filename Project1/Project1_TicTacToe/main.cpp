@@ -19,6 +19,7 @@ using namespace std;
 void displayGrid(char []);
 void takeTurn(char[], bool);
 bool gameOver(char[]);
+bool winner(char[], bool, int);
 
 
 //Execution Begins Here:
@@ -59,8 +60,11 @@ int main(int argc, char** argv) {
         else{
             first=true;
         }
-                
-    }while(!gameOver(grid));    
+    }while(!gameOver(grid));
+    
+    //Display final board that determines score
+    displayGrid(grid);   
+    
     //Exit Stage Right!
     return 0;
 }
@@ -80,12 +84,12 @@ void displayGrid(char grid[]){
 }
 void takeTurn(char grid[], bool p1){
     unsigned short choice;
+    
     //Gather Data Input
     do{
         if(p1){
             cout<<"Player 1, ";
-        }
-        else{
+        }else{
             cout<<"Player 2, ";
         }
         cout<<"enter number: ";
@@ -104,7 +108,7 @@ bool gameOver(char grid[]){
     //Declare Variables
     bool over=false;
     //Determine if game is over
-    for(int i=0;i<10;i++){
+    for(int i=1;i<10;i++){
         if(grid[i]<='9'&&grid[i]>='0')
             over=true;
     }
@@ -114,7 +118,7 @@ bool gameOver(char grid[]){
         over=true;
     else if((grid[7]==grid[8])&&(grid[7]==grid[9]))
         over=true;
-    else if((grid[1]==grid[4])&&(grid[1]==grid[5]))
+    else if((grid[1]==grid[4])&&(grid[1]==grid[7]))
         over=true;
     else if((grid[2]==grid[5])&&(grid[2]==grid[8]))
         over=true;
@@ -122,10 +126,16 @@ bool gameOver(char grid[]){
         over=true;
     else if((grid[1]==grid[5])&&(grid[1]==grid[9]))
         over=true;
-    else if((grid[3]==grid[5])&&(grid[3]==grid[8]))
-        over=true;
+    else if((grid[3]==grid[5])&&(grid[3]==grid[7]))
+        over=true;   
+    else
+        over=false;
     
     return over;
 
 }
+bool winner(char grid[], bool p1, int i){
+    
+    }
+
 
