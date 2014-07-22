@@ -92,11 +92,9 @@ int main(int argc, char** argv) {
 
         //Keep track of scores 
         if (p1==true){
-            //cout<<"p1 won"<<endl;
             score1++;
         }
         else{
-            //cout<<"p2 won"<<endl;
             score2++;
         }
         //Output scores to file
@@ -271,12 +269,22 @@ void menu(){
         cout<<"[1] Play Game"<<endl;
         cout<<"[2] Rules"<<endl;
         cin>>choice;
-    }while(choice<'1'||choice>'3');
+    }while(choice<'1'||choice>'2');
     switch(choice){
         case '1':
+            cout<<endl;
             break;
         case '2':
             cout<<"Rules:  "<<endl;
+            cout<<"1. Decide who will be Player 1 or Player 1"<<endl;
+            cout<<"2. When making your move, choose the number where you want";
+            cout<<" to place your mark."<<endl;
+            cout<<"3. Try to get all three of your marks in a row, ";
+            cout<<" column, or diagonal row before the other player does.\n";
+            cout<<"4. After each game, decide if you want to play again.\n";
+            cout<<"4. If you want to see a tally of your scores, see the ";
+            cout<<"text file entitled scores."<<endl;
+            cout<<"5. Have fun!"<<endl<<endl;
             break;
       
     }
