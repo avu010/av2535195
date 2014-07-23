@@ -15,11 +15,14 @@ using namespace std;
 
 //Global Constants
 //Problem 3,5
-const float FTMT=0.3048f;
-const float INCM=2.54f;
+const float FTMT=0.3048f;  //Meters in one foot
+const float INCM=2.54f;    //Centimeters in one inch     
 //Problem 4,5
-float MTFT=3.28084f; 
-float CTIN=0.393701f;
+float MTFT=3.28084f;       //Feet in meters
+float CTIN=0.393701f;      //Inches in one centimeter     
+//Problem 6
+float LBKG=0.4536f;       //Kilograms in one pound
+float OZG=28.3495f;       //Grams in one ounce
 
 //Function Prototypes
 //Functions for Main Menu
@@ -50,6 +53,10 @@ void output6 (float&, float&);
 void input7 (float&, float&); 
 void cnvsn7 (float&, float&, float&, float&);
 void output7 (float&, float&);
+//Functions for Problem 6
+void input9 (float&, float&);
+void cnvsn9 (float&, float&, float&, float&);
+void output9 (float&, float&);
 
 
 
@@ -315,8 +322,39 @@ void problem5(){
 }
 
 //Solution to problem 6
+//Savitch 8thEd Ch5 Problem 9
 void problem6(){
+    //Declare Variables
+    float lb, oz, kg, g;
     
+    //Gather Data Input
+    input9 (lb, oz);
+    
+    //Convert
+    cnvsn9 (lb, oz, kg, g);
+    
+    //Output Results
+    output9 (kg, g);
+}
+
+//Functions for Problem 6
+void input9 (float& lb, float& oz){
+    cout<<"Welcome! Enter a weight in pounds and ounces, and I will convert it";
+    cout<<" to kilograms and grams.\n";
+    cout<<"Pounds: ";
+    cin>>lb;
+    cout<<"Ounces: ";
+    cin>>oz;
+}
+
+void cnvsn9 (float& lb, float& oz, float& kg, float& g){
+    kg=LBKG*lb;
+    g=OZG*oz;
+}
+
+void output9 (float& kg, float& g){
+    cout<<"The equivalent weight in kilograms and grams is: ";
+    cout<<kg<<" kg and "<<g<<" g"<<endl<<endl;
 }
 
 //Solution to problem 7
