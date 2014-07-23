@@ -56,11 +56,11 @@ void output6 (float&, float&);
 void input7 (float&, float&); 
 void cnvsn7 (float&, float&, float&, float&);
 void output7 (float&, float&);
-//Functions for Problem 6
+//Functions for Problem 6,8
 void input9 (float&, float&);
 void cnvsn9 (float&, float&, float&, float&);
 void output9 (float&, float&);
-//Functions for Problem 7
+//Functions for Problem 7,8
 void input10 (float&, float&);
 void cnvsn10 (float&, float&, float&, float&);
 void output10 (float&, float&);
@@ -344,7 +344,7 @@ void problem6(){
     output9 (kg, g);
 }
 
-//Functions for Problem 6
+//Functions for Problem 6,8
 void input9 (float& lb, float& oz){
     cout<<"Welcome! Enter a weight in pounds and ounces, and I will convert it";
     cout<<" to kilograms and grams.\n";
@@ -365,7 +365,7 @@ void output9 (float& kg, float& g){
     cout<<kg<<" kg and "<<g<<" g"<<endl<<endl;
 }
 
-//Solution to problem 7
+//Solution to problem 7,8
 //Savitch 8thEd Ch5 Prob 10
 void problem7(){
     //Declare Variables
@@ -402,10 +402,28 @@ void output10 (float&lb, float&oz){
     cout<<lb<<" lb and "<<oz<<" oz"<<endl<<endl;
 }
 
-
 //Solution to problem 8
 void problem8(){
+    //Declare Variables
+    float lb, oz, kg, g;
+    char choice;
     
+    //Prompt user to input choice
+    cout<<"[1] Convert pounds and ounces to kilograms and grams\n";
+    cout<<"[2] Convert kilograms and grams to pounds and ounces\n";
+    cout<<"Which conversion (1 or 2)? ";
+    cin>>choice;
+    
+    //Carry out appropriate conversion depending on what user chooses
+    if(choice=='1'){
+        input9 (lb, oz);
+        cnvsn9 (lb, oz, kg, g);
+        output9 (kg, g);
+    }else if(choice=='2'){
+        input10 (kg, g);
+        cnvsn10 (kg, g, lb, oz);
+        output10 (lb, oz);     
+    }
 }
 
 //Solution to problem 9
