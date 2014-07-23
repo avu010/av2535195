@@ -23,6 +23,9 @@ float CTIN=0.393701f;      //Inches in one centimeter
 //Problem 6
 float LBKG=0.4536f;       //Kilograms in one pound
 float OZG=28.3495f;       //Grams in one ounce
+//Problem 7
+float KGLB=2.205f;       //Pounds in one gram
+float GOZ=0.0353f;       //Ounces in one gram
 
 //Function Prototypes
 //Functions for Main Menu
@@ -57,6 +60,10 @@ void output7 (float&, float&);
 void input9 (float&, float&);
 void cnvsn9 (float&, float&, float&, float&);
 void output9 (float&, float&);
+//Functions for Problem 7
+void input10 (float&, float&);
+void cnvsn10 (float&, float&, float&, float&);
+void output10 (float&, float&);
 
 
 
@@ -354,13 +361,47 @@ void cnvsn9 (float& lb, float& oz, float& kg, float& g){
 
 void output9 (float& kg, float& g){
     cout<<"The equivalent weight in kilograms and grams is: ";
+    cout<<fixed<<showpoint<<setprecision(2);
     cout<<kg<<" kg and "<<g<<" g"<<endl<<endl;
 }
 
 //Solution to problem 7
+//Savitch 8thEd Ch5 Prob 10
 void problem7(){
+    //Declare Variables
+    float lb, oz, kg, g;
     
+    //Gather Data Input
+    input10 (kg, g);
+    
+    //Convert
+    cnvsn10 (kg, g, lb, oz);
+    
+    //Output Results
+    output10 (lb, oz);
 }
+
+//Functions for Problem 7
+void input10 (float& kg, float& g){
+    cout<<"Welcome! Enter a weight in kilograms and grams, and I will convert it";
+    cout<<" to pounds and ounces.\n";
+    cout<<"Kilograms: ";
+    cin>>kg;
+    cout<<"Grams: ";
+    cin>>g;
+}
+
+void cnvsn10 (float& kg, float& g, float& lb, float& oz){
+    lb=KGLB*kg;
+    oz=GOZ*g;
+}
+
+void output10 (float&lb, float&oz){
+    cout<<"The equivalent weight in pounds and ounces is: ";
+    cout<<fixed<<showpoint<<setprecision(2);
+    cout<<lb<<" lb and "<<oz<<" oz"<<endl<<endl;
+}
+
 
 //Solution to problem 8
 void problem8(){
