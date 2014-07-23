@@ -14,10 +14,10 @@
 using namespace std;
 
 //Global Constants
-//Problem 3
+//Problem 3,5
 const float FTMT=0.3048f;
 const float INCM=2.54f;
-//Problem 4
+//Problem 4,5
 float MTFT=3.28084f; 
 float CTIN=0.393701f;
 
@@ -42,11 +42,11 @@ void input(int& hour, int& minute);
 int CNVS(int& hour);
 void output(int hour, int minute, char a);
 int newTime(int& hour,int& hr, int& min, int& minute, char a);
-//Functions for Problem 3
+//Functions for Problem 3,5
 void input6 (float&,float&);
-void convsn (float&,float&,float&,float&);
+void cnvsn6 (float&,float&,float&,float&);
 void output6 (float&, float&);
-//Functions for Problem 4
+//Functions for Problem 4,5
 void input7 (float&, float&); 
 void cnvsn7 (float&, float&, float&, float&);
 void output7 (float&, float&);
@@ -99,6 +99,7 @@ int getN(){
 }
 
 //Solution to problem 1
+//Savitch 8thEd Ch5 Prob 1
 void problem1(){
     //Declare Variables
     int hour, minute;
@@ -124,7 +125,6 @@ void welcome(){
     cout<<" notation. Start by entering a time (ex. 14:25)."<<endl;
 }
 
-//Function for Problem 1,2
 void input(int& hour, int& minute){
     char dum;
     cout<<"Enter time (24 hour notation): ";
@@ -132,7 +132,6 @@ void input(int& hour, int& minute){
     cin>>hour>>dum>>minute;
 }
 
-//Function for Problem 1
 int CNVS(int& hour){
     char a='A';
     if(hour>12){
@@ -142,7 +141,6 @@ int CNVS(int& hour){
     return a;
 }
 
-//Function for Problem 1
 void output(int hour, int minute, char a){
     if(minute<10){
         if(a=='P'){
@@ -165,6 +163,7 @@ void output(int hour, int minute, char a){
 }
 
 //Solution to problem 2
+//Savitch 8thEd Ch5 Prob 2
 void problem2(){
     //Declare Variables
     int hour, minute, hr, min;
@@ -204,7 +203,9 @@ int newTime(int& hour, int& hr, int& min, int& minute, char a){
     }
     return a;
 }
+
 //Solution to problem 3
+//Savitch 8thEd Ch5 Prob 6
 void problem3(){
     //Declare Variables
     float feet, inches, meters, centim;
@@ -213,7 +214,7 @@ void problem3(){
     input6 (feet, inches);
     
     //Calculate new length
-    convsn (feet, inches, meters, centim);
+    cnvsn6 (feet, inches, meters, centim);
     
     //Output Results
     output6 (meters, centim);
@@ -230,7 +231,7 @@ void input6 (float& feet,float& inches){
     cin>>inches;
 }
 
-void convsn (float& feet,float& inches, float& meters,float& centim){
+void cnvsn6 (float& feet,float& inches, float& meters,float& centim){
     meters=FTMT*feet;
     centim=INCM*inches;
 }
@@ -242,6 +243,7 @@ void output6 (float& meters, float& centim){
 }
 
 //Solution to problem 4
+//Savitch 8thEd Ch5 Prob 7
 void problem4(){
     //Declare Variables
     float meters, centim, inches, feet;
@@ -279,8 +281,37 @@ void output7 (float& feet, float& inches){
   
 
 //Solution to problem 5
+//Savitch 8thEd Ch5 Prob 8
 void problem5(){
+    //Declare Variables
+    float meters, centim, feet, inches;
+    char choice;
     
+    //Ask user which conversion he/she wants
+    cout<<"[1] Convert feet and inches to meters and centimeters\n";
+    cout<<"[2] Convert meters and centimeters to feet and inches\n";
+    cout<<"Which conversion (1 or 2)? ";
+    cin>>choice;
+    
+    //Execute appropriate calculation
+    if(choice=='1'){
+        //Data Input
+        input6 (feet, inches);
+    
+        //Convert
+        cnvsn6 (feet, inches, meters, centim);
+
+        //Output Results
+        output6 (meters, centim); 
+    }else if (choice=='2'){
+        input7 (meters, centim);
+
+        //Convert
+        cnvsn7 (feet, meters, inches, centim);
+
+        //Output Results
+        output7 (feet, inches);
+    }
 }
 
 //Solution to problem 6
