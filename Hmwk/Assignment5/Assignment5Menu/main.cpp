@@ -403,6 +403,7 @@ void output10 (float&lb, float&oz){
 }
 
 //Solution to problem 8
+//Savitch 8thEd Ch5 Prob12
 void problem8(){
     //Declare Variables
     float lb, oz, kg, g;
@@ -428,13 +429,67 @@ void problem8(){
 
 //Solution to problem 9
 void problem9(){
+    //Declare Variables
+    float kg, g, lb, oz, centim, meters, feet, inches;
+    char optn, choice;
     
+    //Prompt user to choose lengths or weights
+    cout<<"[1] Convert lengths"<<endl;
+    cout<<"[2] Convert weights"<<endl;
+    cout<<"Which conversion (1 or 2)? ";
+    cin>>optn;
+    
+    //Prompt user to choose which conversion
+    if(optn=='1'){
+        //Ask user which conversion he/she wants
+        cout<<"[1] Convert feet and inches to meters and centimeters\n";
+        cout<<"[2] Convert meters and centimeters to feet and inches\n";
+        cout<<"Which conversion (1 or 2)? ";
+        cin>>choice;
+
+        //Execute appropriate calculation
+        if(choice=='1'){
+            //Data Input
+            input6 (feet, inches);
+
+            //Convert
+            cnvsn6 (feet, inches, meters, centim);
+
+            //Output Results
+            output6 (meters, centim); 
+        }else if (choice=='2'){
+            input7 (meters, centim);
+
+            //Convert
+            cnvsn7 (feet, meters, inches, centim);
+
+            //Output Results
+            output7 (feet, inches);
+        }
+    }else if (optn=='2'){
+        //Ask user which conversion he/she wants
+        cout<<"[1] Convert pounds and ounces to kilograms and grams\n";
+        cout<<"[2] Convert kilograms and grams to pounds and ounces\n";
+        cout<<"Which conversion (1 or 2)? ";
+        cin>>choice;
+
+        //Carry out appropriate conversion depending on what user chooses
+        if(choice=='1'){
+            input9 (lb, oz);
+            cnvsn9 (lb, oz, kg, g);
+            output9 (kg, g);
+        }else if(choice=='2'){
+            input10 (kg, g);
+            cnvsn10 (kg, g, lb, oz);
+            output10 (lb, oz);     
+        }
+    }
 }
 
 
 //Solution to problem 10
 void problem10(){
-    
+   
 }
 
 //Exit Comment
