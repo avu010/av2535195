@@ -14,6 +14,9 @@
 using namespace std;
 
 //Global Constants
+//For Problem 3
+const float FTMT=0.3048f;
+const float INCM=2.54f;
 
 //Function Prototypes
 //Functions for Main Menu
@@ -36,6 +39,11 @@ void input(int& hour, int& minute);
 int CNVS(int& hour);
 void output(int hour, int minute, char a);
 int newTime(int& hour,int& hr, int& min, int& minute, char a);
+//Functions for Problem 3
+void input6 (float&,float&);
+void convsn (float&,float&,float&,float&);
+void output6 (float&, float&);
+
 
 //Execution begins here
 int main(int argv,char *argc[]){
@@ -156,7 +164,7 @@ void problem2(){
     
     //Output Welcome Message
     cout<<"Welcome! Please start by entering the current time (24-hour notation).";
-    cout<<"\n Then, please enter the number of hours and minutes for the wait time.\n";
+    cout<<"\nThen, please enter the number of hours and minutes for the wait time.\n";
     
     //Prompt user to input current time
     input(hour, minute);
@@ -179,7 +187,7 @@ int newTime(int& hour, int& hr, int& min, int& minute, char a){
     hour+=hr;
     minute+=min;
     if(hour>24){
-        hour-=25;
+        hour-=24;
         a='A';
     }else if (hour>=12&&hour<=24){
         a='P';
@@ -190,7 +198,39 @@ int newTime(int& hour, int& hr, int& min, int& minute, char a){
 }
 //Solution to problem 3
 void problem3(){
+    //Declare Variables
+    float feet, inches, meters, centim;
     
+    //Gather Data Input
+    input6 (feet, inches);
+    
+    //Calculate new length
+    convsn (feet, inches, meters, centim);
+    
+    //Output Results
+    output6 (meters, centim);
+    
+}
+
+//Functions for Problem 3
+void input6 (float& feet,float& inches){
+    cout<<"Please enter a length in feet and inches. Then, I will convert it ";
+    cout<<"to meters and centimeters.\n";
+    cout<<"Feet: ";
+    cin>>feet;
+    cout<<"Inches: ";
+    cin>>inches;
+}
+
+void convsn (float& feet,float& inches, float& meters,float& centim){
+    meters=FTMT*feet;
+    centim=INCM*inches;
+}
+
+void output6 (float& meters, float& centim){
+    cout<<"The equivalent length in meters and centimeters is: ";
+    cout<<fixed<<showpoint<<setprecision(2);
+    cout<<meters<<" m and "<<centim<<" cm"<<endl<<endl;
 }
 
 //Solution to problem 4
