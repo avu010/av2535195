@@ -1,7 +1,7 @@
 /* 
  * File:   main.cpp
- * Author: rcc
- *
+ * Author: Anh Vu
+ * Purpose: Assignment 5 Menu
  * Created on July 22, 2014, 1:16 PM
  */
 
@@ -48,22 +48,29 @@ void input(int& hour, int& minute);
 int CNVS(int& hour);
 void output(int hour, int minute, char a);
 int newTime(int& hour,int& hr, int& min, int& minute, char a);
-//Functions for Problem 3,5
+//Functions for Problem 2
+int newTime(int& hour,int& hr, int& min, int& minute);
+void waitTime(int hour, int minute);
+//Functions for Problem 3,5,9
 void input6 (float&,float&);
 void cnvsn6 (float&,float&,float&,float&);
 void output6 (float&, float&);
-//Functions for Problem 4,5
+//Functions for Problem 4,5,9
 void input7 (float&, float&); 
 void cnvsn7 (float&, float&, float&, float&);
 void output7 (float&, float&);
-//Functions for Problem 6,8
+//Functions for Problem 6,8,9
 void input9 (float&, float&);
 void cnvsn9 (float&, float&, float&, float&);
 void output9 (float&, float&);
-//Functions for Problem 7,8
+//Functions for Problem 7,8,9
 void input10 (float&, float&);
 void cnvsn10 (float&, float&, float&, float&);
 void output10 (float&, float&);
+//Functions for Problem 10
+void input14(float&, float&);
+void calc14(float&, float&, float&);
+void output14(float&, float&);
 
 
 
@@ -179,7 +186,7 @@ void output(int hour, int minute, char a){
 //Solution to problem 2
 //Savitch 8thEd Ch5 Prob 2
 void problem2(){
-    //Declare Variables
+     //Declare Variables
     int hour, minute, hr, min;
     char a;
     
@@ -197,25 +204,36 @@ void problem2(){
     cin>>min;
     
     //Calculate new time
-    a=newTime(hour, hr, min, minute, a);
+    a=newTime(hour, hr, min, minute);
     
     //Output New Time
-    cout<<hour<<":"<<min<<a<<endl<<endl;
+   waitTime(hour, minute);
 }
 
-//Function for Problem 2
-int newTime(int& hour, int& hr, int& min, int& minute, char a){
+//Functions for Problem 2
+int newTime(int& hour, int& hr, int& min, int& minute){
     hour+=hr;
     minute+=min;
-    if(hour>24){
+    if (hour>24)
         hour-=24;
-        a='A';
-    }else if (hour>=12&&hour<=24){
-        a='P';
+}
+
+void waitTime(int hour, int minute){
+    if(minute<10){
+        cout<<"New Time: ";
+        cout<<hour<<":0"<<minute<<endl<<endl;
+    }else if (minute>=10&&minute<60) {
+        cout<<"New Time: ";
+        cout<<hour<<":"<<minute<<endl<<endl;
     }else{
-        a='A';
+        hour++;
+        minute-=60;
+        if (hour>24){
+            hour-=24;
+        }
+    cout<<"New Time: ";
+    cout<<hour<<":0"<<minute<<endl<<endl;    
     }
-    return a;
 }
 
 //Solution to problem 3
@@ -403,7 +421,7 @@ void output10 (float&lb, float&oz){
 }
 
 //Solution to problem 8
-//Savitch 8thEd Ch5 Prob12
+//Savitch 8thEd Ch5 Prob11
 void problem8(){
     //Declare Variables
     float lb, oz, kg, g;
@@ -428,6 +446,7 @@ void problem8(){
 }
 
 //Solution to problem 9
+//Savitch 8thEd Ch5 Prob 12
 void problem9(){
     //Declare Variables
     float kg, g, lb, oz, centim, meters, feet, inches;
@@ -488,8 +507,44 @@ void problem9(){
 
 
 //Solution to problem 10
+//Savitch 8thEd Ch5 Prob14
 void problem10(){
-   
+    //Declare Variables
+    float speed, temp, wIndex;
+    
+    //Prompt user input
+    input14(speed, temp);
+    
+    //Calculate chill wind index
+    calc14(speed, temp,wIndex);
+    
+    //Output result
+    output14(wIndex, temp);  
+}
+
+//Functions for Problem 10
+void input14(float& speed, float& temp){
+    //Prompt user input
+    cout<<"Welcome! Please enter the wind speed in m/sec and the temperature";
+    cout<<" in degrees Celsius. Please only enter temperatures less than or ";
+    cout<<"equal to 10\n";
+    cout<<"Wind Speed: ";
+    cin>>speed;
+    cout<<"Temperature: ";
+    cin>>temp;
+}
+
+void calc14(float& speed, float& temp, float& wIndex){
+        wIndex=13.12+0.6215*temp-11.37*pow(speed,0.16)+0.3965*temp*pow(speed,0.16);
+}
+       
+void output14(float&wIndex, float& temp){
+    if(temp<=10){
+        cout<<fixed<<showpoint<<setprecision(2);
+        cout<<"Wind Chill Index: "<<wIndex<<" degrees Celsius"<<endl<<endl;
+    }else{
+    cout<<"Please enter temperatures less than or equal to 10!"<<endl<<endl;
+    }
 }
 
 //Exit Comment
