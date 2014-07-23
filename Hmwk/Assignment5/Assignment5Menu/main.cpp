@@ -6,12 +6,12 @@
  */
 
 //System Libraries
-#include <cstdlib>
 #include <iostream>
-#include <ctime>
 #include <iomanip>
 #include <cmath>
 using namespace std;
+
+//User Libraries
 
 //Global Constants
 //Problem 3,5
@@ -535,7 +535,7 @@ void input14(float& speed, float& temp){
 }
 
 void calc14(float& speed, float& temp, float& wIndex){
-        wIndex=13.12+0.6215*temp-11.37*pow(speed,0.16)+0.3965*temp*pow(speed,0.16);
+    wIndex=13.12+0.6215*temp-11.37*pow(speed,0.16)+0.3965*temp*pow(speed,0.16);
 }
        
 void output14(float&wIndex, float& temp){
