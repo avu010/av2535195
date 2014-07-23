@@ -14,9 +14,12 @@
 using namespace std;
 
 //Global Constants
-//For Problem 3
+//Problem 3
 const float FTMT=0.3048f;
 const float INCM=2.54f;
+//Problem 4
+float MTFT=3.28084f; 
+float CTIN=0.393701f;
 
 //Function Prototypes
 //Functions for Main Menu
@@ -43,6 +46,11 @@ int newTime(int& hour,int& hr, int& min, int& minute, char a);
 void input6 (float&,float&);
 void convsn (float&,float&,float&,float&);
 void output6 (float&, float&);
+//Functions for Problem 4
+void input7 (float&, float&); 
+void cnvsn7 (float&, float&, float&, float&);
+void output7 (float&, float&);
+
 
 
 //Execution begins here
@@ -235,8 +243,40 @@ void output6 (float& meters, float& centim){
 
 //Solution to problem 4
 void problem4(){
+    //Declare Variables
+    float meters, centim, inches, feet;
     
+    //Gather Data Input
+    input7 (meters, centim);
+    
+    //Convert
+    cnvsn7 (feet, meters, inches, centim);
+    
+    //Output Results
+    output7 (feet, inches);
 }
+
+//Functions for Problem 4
+void input7 (float& meters, float& centim){
+    cout<<"Welcome! Give me a length in meters and centimeters, and I will ";
+    cout<<"give you the same length in feet and inches"<<endl;
+    cout<<"Meters: ";
+    cin>>meters;
+    cout<<"Centimeters: ";
+    cin>>centim;
+}
+
+void cnvsn7 (float& feet, float& meters, float& inches, float& centim){
+    feet=MTFT*meters;
+    inches=CTIN*centim;
+}
+
+void output7 (float& feet, float& inches){
+    cout<<"The equivalent length in feet and inches is: ";
+    cout<<fixed<<showpoint<<setprecision(2);
+    cout<<feet<<" ft and "<<inches<<" in"<<endl<<endl;
+}
+  
 
 //Solution to problem 5
 void problem5(){
