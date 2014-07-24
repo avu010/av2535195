@@ -1,0 +1,9 @@
+Exception: STATUS_ACCESS_VIOLATION at eip=0040125E
+eax=0028A718 ebx=0028ABD0 ecx=472B1C00 edx=0000263A esi=0000002E edi=00000072
+ebp=0028AC28 esp=0028A710 program=C:\Users\rcc\Desktop\Savitch_8thEd_Ch5_Prob4\dist\Debug\Cygwin_4.x-Windows\savitch_8thed_ch5_prob4.exe, pid 5224, thread main
+cs=0023 ds=002B es=002B fs=0053 gs=002B ss=002B
+Stack trace:
+Frame     Function  Args
+0028AC28  0040125E (0000002E, 00000072, 0028ACF8, 61007FB5)
+0028ACF8  61007FB5 (00000000, 0028CD84, 61007120, 00000000)
+End of stack trace
