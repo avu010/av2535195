@@ -15,6 +15,8 @@ using namespace std;
 //Function Prototypes    
 //I wasn't sure if this is an appropriate place to declare columns, but
 //I couldn't declare the function without declaring the size of the column
+//I also wasn't sure on how to write a function that would determine if all of 
+//the seats were filled
 const int COL=4;        
 void display (char seat[][COL], int);
 void input(int&, int&, char seat[][COL]);
@@ -29,7 +31,6 @@ int main(int argc, char** argv) {
     int row;
     int seatC;
     char choice;
-
     //Output Simple Message
     cout<<"Welcome to our airline! Below is an outline of our seating";
     cout<<" with 7 rows and 4 seats in each row (A,B,C,D)"<<endl<<endl;
@@ -43,10 +44,10 @@ int main(int argc, char** argv) {
 
         //Prompt User to Choose Seat
         input(row, seatC, seat);
-        
+
         //Display new seating chart
         display (seat, ROWSZ);
-        
+            
         //Ask user if he/she wants to run program again
         cout<<"Would you like to choose another seat? ";
         cin>>choice;
@@ -90,5 +91,9 @@ void display (char seat[][COL], int ROW){
     }
     cout<<endl;
 }
-    
+
+
+
+
+
 
