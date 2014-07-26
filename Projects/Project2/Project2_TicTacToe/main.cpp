@@ -17,11 +17,14 @@ using namespace std;
 //Global Constants
 
 //Function Prototypes
+void welcome();
 void displayGrid(char []);      //Displays Tic-Tac-Toe board
 void takeTurn(char[], bool);    //Places appropriate mark on board 
 bool gameOver(char[]);          //Determines whether or not game is over
 short winner(char[], short);    //Determines winner
 void menu();                    //Displays menu
+void reset (char []);           //Resets board 
+void file (int, int);           //Outputs scores to file
 
 
 //Execution Begins Here:
@@ -35,33 +38,15 @@ int main(int argc, char** argv) {
     unsigned short score1=0;        //Calculate score for player 1
     unsigned short score2=0;        //Calculate score for player 2
     char again;                     //Whether players want to play again
-    bool over;                      //Determines if game is over   
+    bool over;                      //Determines if game is over  
+    bool first;                     //Determines who's turn it is
     
     //Display Menu
     menu();
     
-    //Welcome player and output which player is what mark
-    cout<<"Welcome to Tic-Tac-Toe! Who will play first will be randomly chosen.";
-    cout<<" May the best man win!"<<endl;
-    cout<<"Player 1= X"<<endl;
-    cout<<"Player 2= O"<<endl<<endl;
+    //Welcome Message
+    welcome ();
     
-    //Set random seed
-    srand(static_cast<unsigned int>(time(0)));
-    
-    //Determine who will go first 
-    bool first=rand()%2; 
-    
-    //Output who will go first
-    if(first){
-        cout<<"Congratulations Player 1, you get to play first!";
-        cout<<endl<<endl;
-    }else{
-        cout<<"Congratulations Player 2, you get to play first!";
-        cout<<endl<<endl;
-    }
-    
-    //Game Play
     //Reiterates game until players decide to stop
     do{
         //Game continues until game is over
@@ -101,31 +86,10 @@ int main(int argc, char** argv) {
         }
         
         //Output scores to file
-        ofstream output;
-        output.open ("scores.txt");
-        output<<"Player 1: "<<score1<<" wins & "
-              <<"Player 2: "<<score2<<" wins...........";
-        
-        if(score1<score2)
-            output<<"Player 1, you need to step up your game!\n";       
-        else if (score2<score1)
-            output<<"Player 2, you need to step up your game!\n";
-        else
-            output<<"Player 1 and Player 2, you are tied.\n";
-        
-        //Close File
-        output.close ();   
+        file (score1,score2);  
         
         //Reset board so user can play again
-        grid[1]='1';
-        grid[2]='2';
-        grid[3]='3';
-        grid[4]='4';
-        grid[5]='5';
-        grid[6]='6';
-        grid[7]='7';
-        grid[8]='8';
-        grid[9]='9';
+        reset(grid);
         
         //Ask if player wants to play again
         cout<<"Play again (Y/N)? ";
@@ -149,6 +113,30 @@ void displayGrid(char grid[]){
     cout<<"          |          |          "<<endl;
     cout<<"    "<<grid[7]<<"     |    "<<grid[8]<<"     |    "<<grid[9]<<endl;
     cout<<"          |          |          "<<endl;
+}
+
+//Displays welcome message as well as randomly chooses who plays first
+void welcome(){
+    //Welcome player and output which player is what mark
+    cout<<"Welcome to Tic-Tac-Toe! Who will play first will be randomly chosen.";
+    cout<<" May the best man win!"<<endl;
+    cout<<"Player 1= X"<<endl;
+    cout<<"Player 2= O"<<endl<<endl;
+    
+    //Set random seed
+    srand(static_cast<unsigned int>(time(0)));
+    
+    //Determine who will go first 
+    bool first=rand()%2; 
+    
+    //Output who will go first
+    if(first){
+        cout<<"Congratulations Player 1, you get to play first!";
+        cout<<endl<<endl;
+    }else{
+        cout<<"Congratulations Player 2, you get to play first!";
+        cout<<endl<<endl;
+    }
 }
 
 //Function places mark on board
@@ -274,6 +262,8 @@ short winner(char grid[],short win){
     return win;
 
 }
+
+//Menu 
 void menu(){
     char choice;
     //Prompt user to input choice
@@ -302,4 +292,37 @@ void menu(){
             cout<<"5. Have fun!"<<endl<<endl;
             break;  
     }   
+}
+
+//Resets board
+void reset (char grid[]){
+    grid[1]='1';
+    grid[2]='2';
+    grid[3]='3';
+    grid[4]='4';
+    grid[5]='5';
+    grid[6]='6';
+    grid[7]='7';
+    grid[8]='8';
+    grid[9]='9';
+
+}
+
+void file (int score1, int score2){
+    //Output scores to file
+    ofstream output;
+    output.open ("scores.txt");
+    output<<"Player 1: "<<score1<<" wins & "
+          <<"Player 2: "<<score2<<" wins...........";
+
+    if(score1<score2)
+        output<<"Player 1, you need to step up your game!\n";       
+    else if (score2<score1)
+        output<<"Player 2, you need to step up your game!\n";
+    else
+        output<<"Player 1 and Player 2, you are tied.\n";
+
+    //Close File
+    output.close ();  
+
 }
