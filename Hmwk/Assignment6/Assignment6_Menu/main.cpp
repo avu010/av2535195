@@ -46,8 +46,6 @@ char winner(char[]);            //Determines winner
 //Functions for Problem 4
 //I wasn't sure if this is an appropriate place to declare columns, but
 //I couldn't declare the function without declaring the size of the column
-//I also wasn't sure on how to write a function that would determine if all of 
-//the seats were filled
 const int COL=4;        
 void display (char seat[][COL], int);
 void input(int&, int&, char seat[][COL]);
@@ -148,7 +146,7 @@ void problem2(){
     int SIZE=12;
     int rain[SIZE];
     int sum=0;
-    int avg;
+    float avg;
     int max;
     int min;
     
@@ -180,7 +178,7 @@ void inputrn (int rain[], int SIZE){
 void add (int rain[], int SIZE){
     //Declare Variables
     int sum=0;
-    int avg;
+    float avg;
     
     //Calculate sum of the elements in array
     for(int i=0; i<SIZE; i++){
@@ -188,11 +186,13 @@ void add (int rain[], int SIZE){
     }
     
     //Take final sum to find average    
-    avg=sum/SIZE;
+    avg=static_cast <float>(sum)/SIZE;
     
     //Output total and average 
+    cout<<endl;
     cout<<"In the past year....."<<endl;
     cout<<"The total rainfall: "<<sum<<" inches"<<endl;
+    cout<<fixed<<showpoint<<setprecision(2);
     cout<<"The average rainfall: "<<avg<<" inches"<<endl;
     
 }
@@ -551,7 +551,6 @@ void sd(float x[], float & stdev, int sizeUSR){
 }
 
 
-
 //Solution to problem 6
 //Gaddis Ch7 Prob 8
 void problem6(){
@@ -625,13 +624,15 @@ void problem7(){
 }
 
 //Solution to problem 8
+//Gaddis Ch 7 Prob 9
 void problem8(){
     //Declare variables
-    const int SIZE=20;
-    char key[SIZE]={'B','D','A','A','C','A','B','A','C','D','B','C','D','A','D','C','C','B','D','A'};
-    char test[SIZE];       
-    int score=0;          
-    bool invalid;
+    const int SIZE=20;          //size
+    char key[SIZE]={'B','D','A','A','C','A','B','A','C','D','B','C','D','A','D','C',
+                   'C','B','D','A'};
+    char test[SIZE];            //Test answers
+    int score=0;                //Counts scores
+    bool invalid;               //Determines if answer is invalid
     
     cout<<"Check your score here!"<<endl;
     do{
@@ -670,12 +671,12 @@ void problem8(){
 //Gaddis Ch 7 Prob 10
 void problem9(){
     //Declare Variables
-    const int SIZE=20;
-    char key[SIZE];
-    char test[SIZE];       
-    int score=0; 
-    float pass;
-    float perc;
+    const int SIZE=20;          //Size of arrays
+    char key[SIZE];             //Array that holds correct answers
+    char test[SIZE];            //Array that holds student's answers
+    int score=0;                //Keeps count of score
+    float pass;                 //Passing score
+    float perc;                 //Percent of student
     
     //Open and input data from file
     ifstream correct;
@@ -736,13 +737,61 @@ void problem9(){
     correct.close();
 }
 
-
-
 //Solution to problem 10
-void problem10(){
-   
-}
+//Gaddis Ch 7 Prob6
+//I wasn't sure how to prompt the user to input a file name, so I just
+//made a file and input it into my program
 
+void problem10(){
+    //Declare Variables
+    int SIZE=10;
+    int array[SIZE];
+    int sum=0;
+    float avg;
+    int max;
+    int min;
+    
+    //Open file and read it into array
+    ifstream input;
+    input.open("numbers.txt");
+    
+    
+    //Read Data into array
+    for (int i=0; i<SIZE; i++){
+        input>>array[i];
+        sum+=array[i];
+    }
+    //Close file
+    input.close();
+    
+    //Find  average
+    avg=static_cast <float>(sum)/SIZE;
+    
+    //Set max to the first variable in array
+    max=array[0];
+    
+    //Loops through all variables in array, compares each integer to max
+    for(int i=1; i<SIZE; i++){
+        if (array[i]>max)
+            max=array[i];
+    }
+    
+    //Set min to first variables
+    min=array[0];
+    
+    //Loops to find minimum integer in array
+    for(int j=1; j<SIZE; j++){
+        if (array[j]<min)
+            min=array[j];
+    }
+    
+    //Output Result
+    cout<<"Sum: "<<sum<<endl;
+    cout<<fixed<<showpoint<<setprecision(2);
+    cout<<"Average: "<<avg<<endl;
+    cout<<"Maximum: "<<max<<endl;
+    cout<<"Minimum: "<<min<<endl<<endl;  
+}
 
 //Exit Comment
 void def(int inN){
