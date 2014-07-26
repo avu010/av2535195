@@ -33,8 +33,6 @@ void problem7();
 void problem8();
 void problem9();
 void problem10();
-//Functions for Problem 1
-void values(int [], int);
 //Functions for problem 2
 void inputrn (int[], int);
 void add (int [], int);
@@ -108,14 +106,7 @@ void problem1(){
     //Declare Variables
     const int SIZE=10;
     int a[SIZE];
-    
-    //Inputs numbers into array, then finds max and min
-    values (a, SIZE);  
 
-}
-
-//Functions for problem 1
-void values(int a[], int SIZE){
     //Declare Variables
     int max, min;
     
@@ -147,7 +138,7 @@ void values(int a[], int SIZE){
     cout<<"Largest integer: "<<max<<endl<<endl;
     cout<<"Smallest integer: "<<min<<endl<<endl;
     
-    }
+}
 
 //Solution to problem 2
 //Gaddis Ch7 Prob 2
@@ -561,25 +552,118 @@ void sd(float x[], float & stdev, int sizeUSR){
 
 
 //Solution to problem 6
+//Gaddis Ch7 Prob 8
 void problem6(){
+    //Declare variables
+    const int SIZE=7;
+    int ID [SIZE]={5658845, 4520125, 7895122, 8777541, 8451277, 1302850, 7580489};
+    int hrs[SIZE];
+    float rate[SIZE];
+    float pay [SIZE];
     
+    //Gather Data Input
+    for(int i=0;i<7;i++){
+        do{
+            cout<<"Enter your 7-digit ID: ";
+            cin>>ID[i];
+            cout<<"Hours worked: ";
+            cin>>hrs[i];
+            cout<<"Pay rate: ";
+            cin>>rate[i];
+            if(rate[i]<6){
+                cout<<"Please enter a pay rate that is larger than 6 ";
+                cout<<"and hours that are above 0."<<endl;
+            }
+        }while(rate[i]<6 || hrs[i]<0);
+        
+        //Calculate pay
+        pay[i]=hrs[i]*rate[i];
+    }
+    
+    //Output Results
+    for(int i=0;i<7;i++){
+        cout<<"ID: "<<ID[i]<<endl;
+        cout<<fixed<<showpoint<<setprecision(2);
+        cout<<"Wage: $"<<pay[i]<<endl;
+    }
 }
 
 
-
-
-
-//Solution to problem 7,8
+//Solution to problem 7
+//Gaddis Ch7 Prob 13
 void problem7(){
-   
+    //Declare variables
+    bool win;
+    const int SIZE=5;    
+    int lottery[SIZE];
+    int user[SIZE];
+    
+    //Set Random Seed
+    srand(static_cast<unsigned int>(time(0)));
+    
+    //Gather Data Input
+    cout<<"Welcome to the lottery, and good luck!"<<endl;
+    cout<<"Please input a 5-digit number with a space in between each number: ";
+    for(int i=0;i<5;i++){
+        //Generate random numbers from 0 to 9
+        lottery[i]=rand()%10;
+        cin>>user[i];
+        //Determine winner or loser
+        if(user[i]!=lottery[i])
+            win=false;
+        else
+            win=true;
+         
+    }
+    
+    if(win==false)
+        cout<<"Sorry, you didn't win. Better luck next time :("<<endl<<endl;
+    
+    else
+        cout<<"YOU WON THE LOTTERY! Have fun being rich!!!!"<<endl<<endl;
 }
-
-
 
 //Solution to problem 8
 void problem8(){
-  
+    //Declare variables
+    const int SIZE=20;
+    char key[SIZE]={'B','D','A','A','C','A','B','A','C','D','B','C','D','A','D','C','C','B','D','A'};
+    char test[SIZE];       
+    int score=0;          
+    bool invalid;
+    
+    cout<<"Check your score here!"<<endl;
+    do{
+        invalid=false;
+        cout<<"Enter your answers: ";
+        
+        //Input and check validity of score
+        for(int i=0;i<SIZE;i++){
+            cin>>test[i];
+            if(test[i]<'A' || test[i]>'D')
+                invalid=true;
+        }
+        if(invalid==true)
+            cout<<"Please only enter A, B, C, or D.";
+    }while(invalid==true);
+    
+    //Count score
+    for(int i=0;i<20;i++){
+        if(test[i]==key[i])
+            score++;
+    }   
+   
+    //Determine if you pass or fail    
+    if(score>15){
+        cout<<"You got a score of "<<score<<" out of 20, which means you passed!";
+        cout<<" Congratulations"<<endl<<endl;
+    }
+    else{
+        cout<<"You got a score of "<<score<<" out of 20, which means you failed.";
+        cout<<" Go study."<<endl<<endl;
+    }
 }
+
 
 //Solution to problem 9
 void problem9(){
