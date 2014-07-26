@@ -11,6 +11,7 @@
 #include <cmath>
 #include <ctime>
 #include <cstdlib>
+#include <fstream>
 using namespace std;
 
 //User Libraries
@@ -666,9 +667,75 @@ void problem8(){
 
 
 //Solution to problem 9
+//Gaddis Ch 7 Prob 10
 void problem9(){
+    //Declare Variables
+    const int SIZE=20;
+    char key[SIZE];
+    char test[SIZE];       
+    int score=0; 
+    float pass;
+    float perc;
     
+    //Open and input data from file
+    ifstream correct;
+    correct.open("answers.txt");
+   
+    //Read Data into array
+    for (int i=0; i<SIZE; i++){
+        correct>>key[i];
+    }
+    
+    //Output Message
+    cout<<"Compare a student's test with the answer key."<<endl;
+    cout<<"Enter a space in between each answer, then when you are done ";
+    cout<<"hit the return key."<<endl;
+    cout<<"Enter student's answers: ";  
+    
+    for(int i=0;i<20;i++){
+        cin>>test[i];
+    }   
+    
+    
+    //Count score
+    for(int i=0;i<20;i++){
+        if(test[i]==key[i])
+            score++;
+    }   
+    
+    //Calculate passing score & percentage
+    perc=static_cast<float>(score)/20;
+    pass=0.70;
+   
+    //Determine if student pass or fail    
+    if(perc>=pass){
+        cout<<"Number of questions missed: "<<20-score<<endl;
+        cout<<fixed<<showpoint<<setprecision(2);
+        cout<<"Grade percent: "<<perc<<"%"<<endl;
+        cout<<"The student has passed the exam."<<endl;
+        cout<<"Student's Answer             Correct Answer"<<endl;
+        for(int i=0;i<20;i++){
+            if(test[i]!=key[i]){
+                cout<<"       "<<test[i]<<"                             "<<key[i]<<endl<<endl;
+            }
+        } 
+        
+    }else{
+        cout<<"Number of questions missed: "<<20-score<<endl;
+        cout<<fixed<<showpoint<<setprecision(2);
+        cout<<"Grade percent: "<<perc<<"%"<<endl;
+        cout<<"The student has failed the exam."<<endl;
+        cout<<"Student's Answer             Correct Answer"<<endl;
+        for(int i=0;i<20;i++){
+            if(test[i]!=key[i]){
+                cout<<"       "<<test[i]<<"                             "<<key[i]<<endl<<endl;
+            }
+        }
+    }
+
+    correct.close();
 }
+
 
 
 //Solution to problem 10
