@@ -16,23 +16,29 @@ using namespace std;
 
 //Global Constants
 
+//Column size of 2D array so I am able to pass as a function
+const int COL=4;
+
 //Function Prototypes
 void welcome();
-void displayGrid(char []);      //Displays Tic-Tac-Toe board
-void takeTurn(char[], bool);    //Places appropriate mark on board 
-bool gameOver(char[]);          //Determines whether or not game is over
-short winner(char[], short);    //Determines winner
-void menu();                    //Displays menu
-void reset (char []);           //Resets board 
-void file (int, int);           //Outputs scores to file
+void displayGrid(char [][COL], int);    //Displays Tic-Tac-Toe board
+void takeTurn(char[][COL], int,  bool); //Places appropriate mark on board 
+bool gameOver(char[][COL], int);        //Determines whether or not game is over
+short winner(char[][COL],int, short);   //Determines winner
+void menu();                            //Displays menu
+void reset (char [][COL], int);         //Resets board 
+void file (int, int);                   //Outputs scores to file
 
 
 //Execution Begins Here:
 int main(int argc, char** argv) {
     //Declare and Initialize Variables
-    const int SIZE=10;
+    const int ROW=4;
     //Array used for board
-    char grid[SIZE]={'x','1','2','3','4','5','6','7','8','9'};  
+    //I included an extra row and column so I could locate the variables
+    //easier
+    char grid[ROW][COL]={{'/','/','/','/'},{'/','1','2','3'},{'/','4','5','6'},
+                         {'/','7','8','9'}};  
     bool p1;                        //Used to determine who's turn it is
     short win;                      //Used to determining winner
     unsigned short score1=0;        //Calculate score for player 1
@@ -51,18 +57,18 @@ int main(int argc, char** argv) {
     do{
         //Game continues until game is over
         do{
-            displayGrid(grid);          //Display Grid
-            takeTurn(grid,first);       //User takes turn
+            displayGrid(grid, ROW);          //Display Grid
+            takeTurn(grid,ROW, first);       //User takes turn
             //Switches between players 1 & 2
             if(first){                  
                 first=false;
             }else{
                 first=true;
             }
-        }while(!gameOver(grid));
+        }while(!gameOver(grid, ROW));
         
         //Determines if game is over & outputs game over message
-        gameOver(grid);
+        gameOver(grid, ROW);
         if (over=true){           
             cout<<"\n*****************************\n";
             cout<<"         Game Over!          \n";
@@ -70,10 +76,10 @@ int main(int argc, char** argv) {
         }   
         
         //Display final board that ends game
-        displayGrid(grid);       
+        displayGrid(grid, ROW);       
 
         //Displays winner
-        win = winner(grid,win);
+        win = winner(grid,ROW, win);
 
         //Keep track of scores 
         if (win==1){
@@ -89,7 +95,7 @@ int main(int argc, char** argv) {
         file (score1,score2);  
         
         //Reset board so user can play again
-        reset(grid);
+        //reset(grid, ROW);
         
         //Ask if player wants to play again
         cout<<"Play again (Y/N)? ";
@@ -102,16 +108,16 @@ int main(int argc, char** argv) {
 }
 
 //Function displays grid
-void displayGrid(char grid[]){
+void displayGrid(char grid[][COL], int ROW){
     //Board with variables at designated positions
     cout<<"          |          |          "<<endl;
-    cout<<"    "<<grid[1]<<"     |    "<<grid[2]<<"     |    "<<grid[3]<<endl;
+    cout<<"    "<<grid[1][1]<<"     |    "<<grid[1][2]<<"     |    "<<grid[1][3]<<endl;
     cout<<"__________|__________|__________"<<endl;
     cout<<"          |          |          "<<endl;
-    cout<<"    "<<grid[4]<<"     |    "<<grid[5]<<"     |    "<<grid[6]<<endl;
+    cout<<"    "<<grid[2][1]<<"     |    "<<grid[2][2]<<"     |    "<<grid[2][3]<<endl;
     cout<<"__________|__________|__________"<<endl;
     cout<<"          |          |          "<<endl;
-    cout<<"    "<<grid[7]<<"     |    "<<grid[8]<<"     |    "<<grid[9]<<endl;
+    cout<<"    "<<grid[3][1]<<"     |    "<<grid[3][2]<<"     |    "<<grid[3][3]<<endl;
     cout<<"          |          |          "<<endl;
 }
 
@@ -140,131 +146,121 @@ void welcome(){
 }
 
 //Function places mark on board
-void takeTurn(char grid[], bool p1){
-    unsigned short choice;  //Where user wants to place mark (1,2,3...9)
+void takeTurn(char grid[][COL], int ROW, bool p1){
+    //Declare Variables
+    unsigned short Cchoice;  //Column where user wants to mark 
+    unsigned short Rchoice;  //Row where user wants to mark
     
     //Gather Data Input
     //Takes user's choices as long as spaces are available
-    do{
+    //do{
         if(p1){
             cout<<"Player 1, ";
         }else{
             cout<<"Player 2, ";
         }
-        cout<<"enter number: ";
-        cin>>choice;
-    }while(choice>9||choice<1||grid[choice]!=(choice+'0'));
+        cout<<"Column? ";
+        cin>>Cchoice;
+        cout<<"Row? ";
+        cin>>Rchoice;
+    //}while(Cchoice>3||Cchoice<0||Rchoice>3||Rchoice<0
+           //||grid[Rchoice][Cchoice]!=(Cchoice+'0'));
     
     //If player one makes mark, place an X. If player 2, place O.
     if(p1){
-        grid[choice] = 'X';
+        grid[Rchoice][Cchoice] = 'X';
     }
     else{
-        grid[choice] = 'O';
+        grid[Rchoice][Cchoice] = 'O';
     }
                             
 }
 
 //Determines whether game is over
-bool gameOver(char grid[]){
+bool gameOver(char grid[][COL], int ROW){
     //Declare Variables
     bool over=false;        
     
     //Determine if game is over
     //Game is over if one of the players wins, or if all the spaces are taken up
-    if((grid[1]==grid[2])&&(grid[1]==grid[3]))
-        over=true;
-    else if((grid[4]==grid[5])&&(grid[4]==grid[6]))
-        over=true;
-    else if((grid[7]==grid[8])&&(grid[7]==grid[9]))
-        over=true;
-    else if((grid[1]==grid[4])&&(grid[1]==grid[7]))
-        over=true;
-    else if((grid[2]==grid[5])&&(grid[2]==grid[8]))
-        over=true;
-    else if((grid[3]==grid[6])&&(grid[3]==grid[9]))
-        over=true;
-    else if((grid[1]==grid[5])&&(grid[1]==grid[9]))
-        over=true;
-    else if((grid[3]==grid[5])&&(grid[3]==grid[7]))
-        over=true;   
-    else if ((grid[1]!='1')&&(grid[2]!='2')&&(grid[3]!='3')&&(grid[4]!='4')&&
-            (grid[4]!='4')&&(grid[5]!='5')&&(grid[6]!='6')&&(grid[7]!='7')&&
-            (grid[8]!='8')&&(grid[8]!='8')&&(grid[9]!='9'))
-        over=true;
-    else
-        over=false;
-    
+    for(int i=1; i<ROW; i++){
+        if((grid[i][1]==grid[i][2])&&(grid[i][1]==grid[i][3]))
+            over=true;
+        else if ((grid[1][i]==grid[2][i])&&(grid[1][i]==grid[3][i]))
+            over=true;
+        else if ((grid[1][1]==grid[2][2])&&(grid[1][1]&&grid[3][3]))
+            over=true;
+        else if ((grid[1][3]==grid[2][2])&&(grid[1][3]&&grid[3][1]))
+            over=true;
+        else if (((grid[i][1]=='X')||(grid[i][1]=='O'))&&
+                ((grid[i][2]=='X')||(grid[i][2]=='O'))&&
+                ((grid[i][3]=='X')||(grid[i][3]=='O'))&&
+                ((grid[1][i]=='X')||(grid[1][i]=='O'))&&
+                ((grid[2][i]=='X')||(grid[2][i]=='O'))&&
+                ((grid[3][i]=='X')||(grid[3][i]=='O'))&&
+                ((grid[1][0]=='X')||(grid[1][0]=='O'))&&
+                ((grid[2][1]=='X')||(grid[2][1]=='O'))&&
+                ((grid[3][2]=='X')||(grid[3][2]=='O'))&&
+                ((grid[1][2]=='X')||(grid[1][2]=='O'))&&
+                ((grid[2][1]=='X')||(grid[2][1]=='O'))&&
+                ((grid[3][0]=='X')||(grid[3][0]=='O')))
+            over=true;
+        else
+            over=false;
+    }
+  
     //Over=true, Game over
     //Over=false, game not over
     return over;
 }
 
+
 //Determines winner
-short winner(char grid[],short win){
+short winner(char grid[][COL], int ROW, short win){
     win=-1;
-    if((grid[1]=='X')&&(grid[2]=='X')&&(grid[3]=='X')){
-        cout<<"Player 1 wins!"<<endl;
-        win=1;
-    }else if((grid[1]=='O')&&(grid[2]=='O')&&(grid[3]=='O')){
-        cout<<"Player 2 wins!"<<endl;
-        win=0;
-    }else if((grid[4]=='X')&&(grid[5]=='X')&&(grid[6]=='X')){
-        cout<<"Player 1 wins!"<<endl;
-        win=1;   
-    }else if((grid[4]=='O')&&(grid[5]=='O')&&(grid[6]=='O')){
-        cout<<"Player 2 wins!"<<endl;
-        win=0;
-    }else if((grid[7]=='X')&&(grid[8]=='X')&&(grid[9]=='X')){
-        cout<<"Player 1 wins!"<<endl;
-        win=1;
-    }else if((grid[7]=='O')&&(grid[8]=='O')&&(grid[9]=='O')){
-        cout<<"Player 2 wins!"<<endl;
-        win=0;
-    }else if((grid[1]=='X')&&(grid[4]=='X')&&(grid[7]=='X')){
-        cout<<"Player 1 wins!"<<endl;
-        win=1;
-    }else if((grid[1]=='O')&&(grid[4]=='O')&&(grid[7]=='O')){
-        cout<<"Player 2 wins!"<<endl;
-        win=0;
-    }else if((grid[2]=='X')&&(grid[5]=='X')&&(grid[8]=='X')){
-        cout<<"Player 1 wins!"<<endl;
-        win=1;
-    }else if((grid[2]=='O')&&(grid[5]=='O')&&(grid[8]=='O')){
-        cout<<"Player 2 wins!"<<endl;
-        win=0;
-    }else if((grid[3]=='X')&&(grid[6]=='X')&&(grid[9]=='X')){
-        cout<<"Player 1 wins!"<<endl;
-        win=1;
-    }else if((grid[3]=='O')&&(grid[6]=='O')&&(grid[9]=='O')){
-        cout<<"Player 2 wins!"<<endl;
-        win=0;
-    }else if((grid[1]=='X')&&(grid[5]=='X')&&(grid[9]=='X')){
-        cout<<"Player 1 wins!"<<endl;
-        win=1;
-    }else if((grid[1]=='O')&&(grid[5]=='O')&&(grid[9]=='O')){
-        cout<<"Player 2 wins!"<<endl;
-        win=0;
-    }else if((grid[3]=='X')&&(grid[5]=='X')&&(grid[7]=='X')){
-        cout<<"Player 1 wins!"<<endl;
-        win=1;
-    }else if((grid[3]=='O')&&(grid[5]=='O')&&(grid[7]=='O')){
-        cout<<"Player 2 wins!"<<endl;
-        win=0;
-    }else{
-        cout<<"No one wins."<<endl;
-        win=-1;
+    for(int i=1; i<ROW; i++){
+        if ((grid[i][1]=='X')&&(grid[i][2]=='X')&&(grid[i][3]=='X')){
+            cout<<"Player 1 wins!"<<endl;
+            win=1;
+        }else if ((grid[i][1]=='O')&&(grid[i][2]=='O')&&(grid[i][3]=='O')){
+            cout<<"Player 2 wins!"<<endl;
+            win=0;
+        }else if ((grid[1][i]=='X')&&(grid[2][i]=='X')&&(grid[3][i]=='X')){
+            cout<<"Player 1 wins!"<<endl;
+            win=1;
+        }else if ((grid[1][i]=='O')&&(grid[2][i]=='O')&&(grid[3][i]=='O')){
+            cout<<"Player 2 wins!"<<endl;
+            win=0;
+        }
     }
+    if ((grid[1][1]=='X')&&(grid[2][2]=='X')&&(grid[3][3]=='X')){
+            cout<<"Player 1 wins!"<<endl;
+            win=1;
+    }else if ((grid[1][1]=='O')&&(grid[2][2]=='O')&&(grid[3][3]=='O')){
+            cout<<"Player 2 wins!"<<endl;
+            win=0;
+    }else if ((grid[1][3]=='X')&&(grid[2][2]=='X')&&(grid[3][1]=='X')){
+            cout<<"Player 1 wins!"<<endl;
+            win=1;
+    }else if ((grid[1][3]=='O')&&(grid[2][2]=='O')&&(grid[3][1]=='O')){
+            cout<<"Player 2 wins!"<<endl;
+            win=0;
+    }else{
+            cout<<"No one wins."<<endl;
+            win=-1;
+    }    
     
+                                     
     //win=1, player 1 wins
     //win=0, player 2 wins
     //win=-1, draw
     return win;
-
 }
+
 
 //Menu 
 void menu(){
+    //Declare Variables
     char choice;
     //Prompt user to input choice
     do{
@@ -295,18 +291,12 @@ void menu(){
 }
 
 //Resets board
-void reset (char grid[]){
-    grid[1]='1';
-    grid[2]='2';
-    grid[3]='3';
-    grid[4]='4';
-    grid[5]='5';
-    grid[6]='6';
-    grid[7]='7';
-    grid[8]='8';
-    grid[9]='9';
-
-}
+/*void reset (char grid[][COL], int ROW){
+    for (int i=1; i<COL; i++){
+        for (int j=0; j<COL; j++)
+            grid[i][j]='?';
+    }
+}*/
 
 void file (int score1, int score2){
     //Output scores to file
