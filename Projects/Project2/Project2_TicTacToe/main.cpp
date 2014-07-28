@@ -37,8 +37,7 @@ int main(int argc, char** argv) {
     //Array used for board
     //I included an extra row and column so I could locate the variables
     //easier
-    char grid[ROW][COL]={{'/','/','/','/'},{'/','1','2','3'},{'/','4','5','6'},
-                         {'/','7','8','9'}};  
+    char grid[ROW][COL];  
     bool p1;                        //Used to determine who's turn it is
     short win;                      //Used to determining winner
     unsigned short score1=0;        //Calculate score for player 1
@@ -52,6 +51,19 @@ int main(int argc, char** argv) {
     
     //Welcome Message
     welcome ();
+    
+    //Initialize board
+    //Open and input data from file
+    ifstream board;
+    board.open("board.txt");
+   
+    //Read Data into array
+    for (int i=1; i<ROW; i++){
+        for (int j=1; j<COL; j++)
+            board>>grid[i][j];
+    }
+    
+    board.close();
     
     //Reiterates game until players decide to stop
     do{
@@ -160,10 +172,10 @@ void takeTurn(char grid[][COL], int ROW, bool p1){
         }else{
             cout<<"Player 2's turn "<<endl;
         }
+         cout<<"Row? ";
+        cin>>Rchoice;
         cout<<"Column? ";
         cin>>Cchoice;
-        cout<<"Row? ";
-        cin>>Rchoice;
     }while(Cchoice>3||Cchoice<0||Rchoice>3||Rchoice<0||grid[Rchoice][Cchoice]
            =='X'||grid[Rchoice][Cchoice]=='O');
     
@@ -189,17 +201,24 @@ bool gameOver(char grid[][COL], int ROW){
             over=true;
         else if ((grid[1][i]==grid[2][i])&&(grid[1][i]==grid[3][i]))
             over=true;
-        else if ((grid[1][1]==grid[2][2])&&(grid[1][1]==grid[3][3]))
+    }
+        if ((grid[1][1]==grid[2][2])&&(grid[1][1]==grid[3][3]))
             over=true;
         else if ((grid[1][3]==grid[2][2])&&(grid[1][3]==grid[3][1]))
             over=true;
-         else if (((grid[i][1]=='X')||(grid[i][1]=='O'))&&
-                ((grid[i][2]=='X')||(grid[i][2]=='O'))&&
-                ((grid[i][3]=='X')||(grid[i][3]=='O')))
+        else if (((grid[1][1]=='X')||(grid[1][1]=='O'))&&
+                ((grid[1][2]=='X')||(grid[1][2]=='O'))&&
+                ((grid[1][3]=='X')||(grid[1][3]=='O'))&&
+                ((grid[2][1]=='X')||(grid[2][1]=='O'))&&
+                ((grid[2][2]=='X')||(grid[2][2]=='O'))&&
+                ((grid[2][3]=='X')||(grid[2][3]=='O'))&&
+                ((grid[3][1]=='X')||(grid[3][1]=='O'))&&
+                ((grid[3][2]=='X')||(grid[3][2]=='O'))&&
+                ((grid[3][3]=='X')||(grid[3][3]=='O')))
             over=true;
         else
             over=false;
-    }
+    
     
     //Over=true, Game over
     //Over=false, game not over
