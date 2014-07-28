@@ -22,12 +22,14 @@ const int COL=4;
 //Function Prototypes
 void welcome();
 void displayGrid(char [][COL], int);    //Displays Tic-Tac-Toe board
-void takeTurn(char[][COL], int,  bool); //Places appropriate mark on board 
+void takeTurn(char [][COL], int , bool , int [],int [],int [],int [], int &); //Places appropriate mark on board 
 bool gameOver(char[][COL], int);        //Determines whether or not game is over
 short winner(char[][COL],int, short);   //Determines winner
 void menu();                            //Displays menu
 void reset (char [][COL], int);         //Resets board 
 void file (int, int);                   //Outputs scores to file
+void cntDown(int&, int[]);              //Uses bubble sorting to display 
+                                        //countdown message before game starts
 
 
 //Execution Begins Here:
@@ -45,6 +47,11 @@ int main(int argc, char** argv) {
     char again;                     //Whether players want to play again
     bool over;                      //Determines if game is over  
     bool first;                     //Determines who's turn it is
+    int step11[9];
+    int step21[9];
+    int step12[9];
+    int step22[9];
+    int q=1;
     
     //Display Menu
     menu();
@@ -159,7 +166,7 @@ void welcome(){
 }
 
 //Function places mark on board
-void takeTurn(char grid[][COL], int ROW, bool p1){
+void takeTurn(char grid[][COL], int ROW, bool p1, int step11[],int step22[],int step12[],int step21[], int &q){
     //Declare Variables
     unsigned short Cchoice;  //Column where user wants to mark 
     unsigned short Rchoice;  //Row where user wants to mark
@@ -179,14 +186,20 @@ void takeTurn(char grid[][COL], int ROW, bool p1){
     }while(Cchoice>3||Cchoice<0||Rchoice>3||Rchoice<0||grid[Rchoice][Cchoice]
            =='X'||grid[Rchoice][Cchoice]=='O');
     
+    
+    
     //If player one makes mark, place an X. If player 2, place O.
     if(p1){
         grid[Rchoice][Cchoice] = 'X';
+        step11[q]=Rchoice*10+Cchoice;
+        step12[q]=Rchoice*10+Cchoice;
     }
     else{
         grid[Rchoice][Cchoice] = 'O';
+        step21[q]=Rchoice*10+Cchoice;
+        step22[q]=Rchoice*10+Cchoice;
     }
-                            
+    q++;                        
 }
 
 //Determines whether game is over
@@ -328,5 +341,17 @@ void file (int score1, int score2){
 
     //Close File
     output.close ();  
+
+}
+
+void cntDown(int& count, int a[]){
+    
+    
+    //Output message
+    cout<<"Are you ready? The game will begin in ";
+    
+    //Bubble sort used to 
+   
+    
 
 }
