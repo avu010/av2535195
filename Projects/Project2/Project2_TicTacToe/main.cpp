@@ -70,9 +70,9 @@ int main(int argc, char** argv) {
         //Determines if game is over & outputs game over message
         gameOver(grid, ROW);
         if (over=true){           
-            cout<<"\n*****************************\n";
-            cout<<"         Game Over!          \n";
-            cout<<"*****************************\n";
+            cout<<"\n**********************************************\n";
+            cout<<"                  Game Over!          \n";
+            cout<<"**********************************************\n";
         }   
         
         //Display final board that ends game
@@ -164,7 +164,8 @@ void takeTurn(char grid[][COL], int ROW, bool p1){
         cin>>Cchoice;
         cout<<"Row? ";
         cin>>Rchoice;
-    }while(Cchoice>3||Cchoice<0||Rchoice>3||Rchoice<0);
+    }while(Cchoice>3||Cchoice<0||Rchoice>3||Rchoice<0||grid[Rchoice][Cchoice]
+           =='X'||grid[Rchoice][Cchoice]=='O');
     
     //If player one makes mark, place an X. If player 2, place O.
     if(p1){
@@ -194,27 +195,16 @@ bool gameOver(char grid[][COL], int ROW){
             over=true;
          else if (((grid[i][1]=='X')||(grid[i][1]=='O'))&&
                 ((grid[i][2]=='X')||(grid[i][2]=='O'))&&
-                ((grid[i][3]=='X')||(grid[i][3]=='O'))&&
-                ((grid[1][i]=='X')||(grid[1][i]=='O'))&&
-                ((grid[2][i]=='X')||(grid[2][i]=='O'))&&
-                ((grid[3][i]=='X')||(grid[3][i]=='O'))&&
-                ((grid[1][0]=='X')||(grid[1][0]=='O'))&&
-                ((grid[2][1]=='X')||(grid[2][1]=='O'))&&
-                ((grid[3][2]=='X')||(grid[3][2]=='O'))&&
-                ((grid[1][2]=='X')||(grid[1][2]=='O'))&&
-                ((grid[2][1]=='X')||(grid[2][1]=='O'))&&
-                ((grid[3][0]=='X')||(grid[3][0]=='O')))
+                ((grid[i][3]=='X')||(grid[i][3]=='O')))
             over=true;
         else
             over=false;
     }
     
-  
     //Over=true, Game over
     //Over=false, game not over
     return over;
 }
-
 
 //Determines winner
 short winner(char grid[][COL], int ROW, short win){
@@ -257,7 +247,6 @@ short winner(char grid[][COL], int ROW, short win){
     return win;
 }
 
-
 //Menu 
 void menu(){
     //Declare Variables
@@ -295,7 +284,13 @@ void menu(){
 
 //Resets board
 void reset (char grid[][COL], int ROW){
-    
+    int num=1;
+    for (int i=1; i<ROW; i++){
+        for (int j=1; j<COL; j++ ){
+            grid[i][j]=(num+'0');
+            num++;
+        }
+    }
 }
 
 void file (int score1, int score2){
