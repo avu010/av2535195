@@ -52,7 +52,7 @@ int main(int argc, char** argv) {
     //Welcome Message
     welcome ();
     
-    //Initialize board
+   //Initialize board
     //Open and input data from file
     ifstream board;
     board.open("board.txt");
@@ -62,7 +62,7 @@ int main(int argc, char** argv) {
         for (int j=1; j<COL; j++)
             board>>grid[i][j];
     }
-    
+    //Close file
     board.close();
     
     //Reiterates game until players decide to stop
