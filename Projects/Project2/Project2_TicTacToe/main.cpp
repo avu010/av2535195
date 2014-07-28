@@ -95,7 +95,7 @@ int main(int argc, char** argv) {
         file (score1,score2);  
         
         //Reset board so user can play again
-        //reset(grid, ROW);
+        reset(grid, ROW);
         
         //Ask if player wants to play again
         cout<<"Play again (Y/N)? ";
@@ -110,15 +110,16 @@ int main(int argc, char** argv) {
 //Function displays grid
 void displayGrid(char grid[][COL], int ROW){
     //Board with variables at designated positions
-    cout<<"          |          |          "<<endl;
-    cout<<"    "<<grid[1][1]<<"     |    "<<grid[1][2]<<"     |    "<<grid[1][3]<<endl;
-    cout<<"__________|__________|__________"<<endl;
-    cout<<"          |          |          "<<endl;
-    cout<<"    "<<grid[2][1]<<"     |    "<<grid[2][2]<<"     |    "<<grid[2][3]<<endl;
-    cout<<"__________|__________|__________"<<endl;
-    cout<<"          |          |          "<<endl;
-    cout<<"    "<<grid[3][1]<<"     |    "<<grid[3][2]<<"     |    "<<grid[3][3]<<endl;
-    cout<<"          |          |          "<<endl;
+    cout<<"         COLUMN 1   COLUMN 2    COLUMN 3"<<endl<<endl;
+    cout<<"                  |          |          "<<endl;
+    cout<<"ROW 1       "<<grid[1][1]<<"     |    "<<grid[1][2]<<"     |    "<<grid[1][3]<<endl;
+    cout<<"        __________|__________|__________"<<endl;
+    cout<<"                  |          |          "<<endl;
+    cout<<"ROW 2       "<<grid[2][1]<<"     |    "<<grid[2][2]<<"     |    "<<grid[2][3]<<endl;
+    cout<<"        __________|__________|__________"<<endl;
+    cout<<"                  |          |          "<<endl;
+    cout<<"ROW 3       "<<grid[3][1]<<"     |    "<<grid[3][2]<<"     |    "<<grid[3][3]<<endl;
+    cout<<"                  |          |          "<<endl;
 }
 
 //Displays welcome message as well as randomly chooses who plays first
@@ -153,18 +154,17 @@ void takeTurn(char grid[][COL], int ROW, bool p1){
     
     //Gather Data Input
     //Takes user's choices as long as spaces are available
-    //do{
+    do{
         if(p1){
-            cout<<"Player 1, ";
+            cout<<"Player 1's turn "<<endl;
         }else{
-            cout<<"Player 2, ";
+            cout<<"Player 2's turn "<<endl;
         }
         cout<<"Column? ";
         cin>>Cchoice;
         cout<<"Row? ";
         cin>>Rchoice;
-    //}while(Cchoice>3||Cchoice<0||Rchoice>3||Rchoice<0
-           //||grid[Rchoice][Cchoice]!=(Cchoice+'0'));
+    }while(Cchoice>3||Cchoice<0||Rchoice>3||Rchoice<0);
     
     //If player one makes mark, place an X. If player 2, place O.
     if(p1){
@@ -188,11 +188,11 @@ bool gameOver(char grid[][COL], int ROW){
             over=true;
         else if ((grid[1][i]==grid[2][i])&&(grid[1][i]==grid[3][i]))
             over=true;
-        else if ((grid[1][1]==grid[2][2])&&(grid[1][1]&&grid[3][3]))
+        else if ((grid[1][1]==grid[2][2])&&(grid[1][1]==grid[3][3]))
             over=true;
-        else if ((grid[1][3]==grid[2][2])&&(grid[1][3]&&grid[3][1]))
+        else if ((grid[1][3]==grid[2][2])&&(grid[1][3]==grid[3][1]))
             over=true;
-        else if (((grid[i][1]=='X')||(grid[i][1]=='O'))&&
+         else if (((grid[i][1]=='X')||(grid[i][1]=='O'))&&
                 ((grid[i][2]=='X')||(grid[i][2]=='O'))&&
                 ((grid[i][3]=='X')||(grid[i][3]=='O'))&&
                 ((grid[1][i]=='X')||(grid[1][i]=='O'))&&
@@ -208,6 +208,7 @@ bool gameOver(char grid[][COL], int ROW){
         else
             over=false;
     }
+    
   
     //Over=true, Game over
     //Over=false, game not over
@@ -249,7 +250,6 @@ short winner(char grid[][COL], int ROW, short win){
             cout<<"No one wins."<<endl;
             win=-1;
     }    
-    
                                      
     //win=1, player 1 wins
     //win=0, player 2 wins
@@ -278,25 +278,25 @@ void menu(){
         case '2':
             cout<<"Rules:  "<<endl;
             cout<<"1. Decide who will be Player 1 or Player 1"<<endl;
-            cout<<"2. When making your move, choose the number where you want";
-            cout<<" to place your mark."<<endl;
-            cout<<"3. Try to get all three of your marks in a row, ";
+            cout<<"2. When making your move, choose the location ";
+            cout<<" to place your mark by choosing the column and row."<<endl;
+            cout<<"3. You may only enter 1, 2, or 3 for both columns and ";
+            cout<<"rows. If you attempt to choose an invalid column or row, \n";
+            cout<<"   you will be asked to make another move."<<endl;
+            cout<<"4. Try to get all three of your marks in a row, ";
             cout<<" column, or diagonal row before the other player does.\n";
-            cout<<"4. After each game, decide if you want to play again.\n";
-            cout<<"4. If you want to see a tally of your scores, see the ";
+            cout<<"5. After each game, decide if you want to play again.\n";
+            cout<<"6. If you want to see a tally of your scores, see the ";
             cout<<"text file entitled scores."<<endl;
-            cout<<"5. Have fun!"<<endl<<endl;
+            cout<<"7. Have fun!"<<endl<<endl;
             break;  
     }   
 }
 
 //Resets board
-/*void reset (char grid[][COL], int ROW){
-    for (int i=1; i<COL; i++){
-        for (int j=0; j<COL; j++)
-            grid[i][j]='?';
-    }
-}*/
+void reset (char grid[][COL], int ROW){
+    
+}
 
 void file (int score1, int score2){
     //Output scores to file
