@@ -15,8 +15,7 @@ using namespace std;
 //User Libraries
 
 //Global Constants
-//Column size of 2D array so I am able to pass as a function
-const int COL=4;
+const int COL=3;
 
 //Function Prototypes
 void welcome();
@@ -36,7 +35,7 @@ void conversion(char,int&,int&);        //Converts user's choice to coordinates
 //Execution Begins Here:
 int main(int argc, char** argv) {
     //Declare and Initialize Variables
-    const int ROW=4;
+    const int ROW=3;
     //Array used for board
     //I included an extra row and column so I could locate the variables
     //easier
@@ -61,8 +60,8 @@ int main(int argc, char** argv) {
     board.open("board.txt");
    
     //Read Data into array
-    for (int i=1; i<ROW; i++){
-        for (int j=1; j<COL; j++)
+    for (int i=0; i<ROW; i++){
+        for (int j=0; j<COL; j++)
             board>>grid[i][j];
     }
     //Close file
@@ -128,13 +127,13 @@ int main(int argc, char** argv) {
 void displayGrid(char grid[][COL], const int ROW){
     //Board with variables at designated positions
     cout<<"             |          |          "<<endl;
-    cout<<"       "<<grid[1][1]<<"     |    "<<grid[1][2]<<"     |    "<<grid[1][3]<<endl;
+    cout<<"       "<<grid[0][0]<<"     |    "<<grid[0][1]<<"     |    "<<grid[0][2]<<endl;
     cout<<"   __________|__________|__________"<<endl;
     cout<<"             |          |          "<<endl;
-    cout<<"       "<<grid[2][1]<<"     |    "<<grid[2][2]<<"     |    "<<grid[2][3]<<endl;
+    cout<<"       "<<grid[1][0]<<"     |    "<<grid[1][1]<<"     |    "<<grid[1][2]<<endl;
     cout<<"   __________|__________|__________"<<endl;
     cout<<"             |          |          "<<endl;
-    cout<<"       "<<grid[3][1]<<"     |    "<<grid[3][2]<<"     |    "<<grid[3][3]<<endl;
+    cout<<"       "<<grid[2][0]<<"     |    "<<grid[2][1]<<"     |    "<<grid[2][2]<<endl;
     cout<<"             |          |          "<<endl;
 }
 
@@ -180,7 +179,7 @@ void takeTurn(char grid[][COL], const int ROW, bool p1){
         cout<<"Enter number: ";
         cin>>ch;
         conversion(ch,row,column);
-    }while(row==0||column==0);
+    }while(row==3||column==3);
         
     //If player one makes mark, place an X. If player 2, place O.
         if(p1){
@@ -199,33 +198,33 @@ bool gameOver(char grid[][COL], const int ROW){
     //Determine if game is over
     //Game is over if one of the players wins, or if all the spaces are taken up
     //Checks for rows
-    for(int i=1; i<ROW; i++){
-        if((grid[i][1]==grid[i][2])&&(grid[i][1]==grid[i][3]))
+    for(int i=0; i<ROW; i++){
+        if((grid[i][0]==grid[i][1])&&(grid[i][0]==grid[i][2]))
             over=true;
     }
     
     //Checks for columns
-    for (int j=1; j<COL; j++){
-        if ((grid[1][j]==grid[2][j])&&(grid[1][j]==grid[3][j]))
+    for (int j=0; j<COL; j++){
+        if ((grid[0][j]==grid[1][j])&&(grid[0][j]==grid[2][j]))
             over=true;
     }
     
     //Checks for diagonals
-    if ((grid[1][1]==grid[2][2])&&(grid[1][1]==grid[3][3]))
+    if ((grid[0][0]==grid[1][1])&&(grid[0][0]==grid[2][2]))
             over=true;
-    else if ((grid[1][3]==grid[2][2])&&(grid[1][3]==grid[3][1]))
+    else if ((grid[0][2]==grid[1][1])&&(grid[0][2]==grid[2][0]))
             over=true;
     
     //Checks for a draw
-    else if (((grid[1][1]=='X')||(grid[1][1]=='O'))&&
+    else if (((grid[0][0]=='X')||(grid[0][0]=='O'))&&
+            ((grid[0][1]=='X')||(grid[0][1]=='O'))&&
+            ((grid[0][2]=='X')||(grid[0][2]=='O'))&&
+            ((grid[1][0]=='X')||(grid[1][0]=='O'))&&
+            ((grid[1][1]=='X')||(grid[1][1]=='O'))&&
             ((grid[1][2]=='X')||(grid[1][2]=='O'))&&
-            ((grid[1][3]=='X')||(grid[1][3]=='O'))&&
+            ((grid[2][0]=='X')||(grid[2][0]=='O'))&&
             ((grid[2][1]=='X')||(grid[2][1]=='O'))&&
-            ((grid[2][2]=='X')||(grid[2][2]=='O'))&&
-            ((grid[2][3]=='X')||(grid[2][3]=='O'))&&
-            ((grid[3][1]=='X')||(grid[3][1]=='O'))&&
-            ((grid[3][2]=='X')||(grid[3][2]=='O'))&&
-            ((grid[3][3]=='X')||(grid[3][3]=='O')))
+            ((grid[2][2]=='X')||(grid[2][2]=='O')))
             over=true;
     
     //Over=true, Game over
@@ -238,17 +237,17 @@ short winner(char grid[][COL], const int ROW){
     short win=-1;
     
     //Loop through rows and columns to see who wins
-    for(int i=1; i<ROW; i++){
-        if ((grid[i][1]=='X')&&(grid[i][2]=='X')&&(grid[i][3]=='X')){
+    for(int i=0; i<ROW; i++){
+        if ((grid[i][0]=='X')&&(grid[i][1]=='X')&&(grid[i][2]=='X')){
             cout<<"Player 1 wins!"<<endl;
             win=1;
-        }else if ((grid[i][1]=='O')&&(grid[i][2]=='O')&&(grid[i][3]=='O')){
+        }else if ((grid[i][0]=='O')&&(grid[i][1]=='O')&&(grid[i][2]=='O')){
             cout<<"Player 2 wins!"<<endl;
             win=0;
-        }else if ((grid[1][i]=='X')&&(grid[2][i]=='X')&&(grid[3][i]=='X')){
+        }else if ((grid[0][i]=='X')&&(grid[1][i]=='X')&&(grid[2][i]=='X')){
             cout<<"Player 1 wins!"<<endl;
             win=1;
-        }else if ((grid[1][i]=='O')&&(grid[2][i]=='O')&&(grid[3][i]=='O')){
+        }else if ((grid[1][i]=='O')&&(grid[1][i]=='O')&&(grid[2][i]=='O')){
             cout<<"Player 2 wins!"<<endl;
             win=0;
         }
@@ -257,16 +256,16 @@ short winner(char grid[][COL], const int ROW){
     //Used to find wins in diagonals. Will only execute if no one wins 
     //with columns and rows
     if(!(win==1||win==0)){
-        if ((grid[1][1]=='X')&&(grid[2][2]=='X')&&(grid[3][3]=='X')){
+        if ((grid[0][0]=='X')&&(grid[1][1]=='X')&&(grid[2][2]=='X')){
                 cout<<"Player 1 wins!"<<endl;
                 win=1;
-        }else if ((grid[1][1]=='O')&&(grid[2][2]=='O')&&(grid[3][3]=='O')){
+        }else if ((grid[0][0]=='O')&&(grid[1][1]=='O')&&(grid[2][2]=='O')){
                 cout<<"Player 2 wins!"<<endl;
                 win=0;
-        }else if ((grid[1][3]=='X')&&(grid[2][2]=='X')&&(grid[3][1]=='X')){
+        }else if ((grid[0][2]=='X')&&(grid[1][1]=='X')&&(grid[2][0]=='X')){
                 cout<<"Player 1 wins!"<<endl;
                 win=1;
-        }else if ((grid[1][3]=='O')&&(grid[2][2]=='O')&&(grid[3][1]=='O')){
+        }else if ((grid[0][2]=='O')&&(grid[1][1]=='O')&&(grid[2][0]=='O')){
                 cout<<"Player 2 wins!"<<endl;
                 win=0;
         }else{
@@ -319,8 +318,8 @@ void menu(){
 //Resets board
 void reset (char grid[][COL], const int ROW){
     int num=1;
-    for (int i=1; i<ROW; i++){
-        for (int j=1; j<COL; j++ ){
+    for (int i=0; i<ROW; i++){
+        for (int j=0; j<COL; j++ ){
             grid[i][j]=(num+'0');
             num++;
         }
@@ -349,31 +348,20 @@ void file (int score1, int score2){
 
 //Sorts grid out after game is over
 void sort(char grid[][COL], const int ROW){
-    const int TOTAL = 16;
-    for(int i=5; i<TOTAL-1; i++){
-        if(i==8||i==12){
-            i++;
-        }
-        else{
-            for(int j=i+1;j<TOTAL;j++){
-                if(j==8||j==12){
-                    j++;
-                }
-                else{
-                    if(grid[0][i]>grid[0][j]){
-                        swap(grid[0][i],grid[0][j]);
-                        displayGrid(grid,ROW);
-                        stall();
-                        cout<<endl;
-                    }
-                    
-                }
+    const int TOTAL = 9;
+    for(int i=0; i<TOTAL; i++){
+        for(int j=i+1;j<TOTAL;j++){
+            if(grid[0][i]>grid[0][j]){
+                swap(grid[0][i],grid[0][j]);
+                displayGrid(grid,ROW);
+                stall();
+                cout<<endl;
+            }
+
             }
         }
     }
-    
-
-}   
+     
 
 //Used to swap values in bubble sort
 void swap(char& x, char& y){
@@ -391,17 +379,17 @@ void stall(){
 //Converts user's choice to coordinates on grid
 void conversion(char ch, int &r,int &c){
     switch(ch){
-        case '1': r=1;c=1;break;
-        case '2': r=1;c=2;break;
-        case '3': r=1;c=3;break;
-        case '4': r=2;c=1;break;
-        case '5': r=2;c=2;break;
-        case '6': r=2;c=3;break;
-        case '7': r=3;c=1;break;
-        case '8': r=3;c=2;break;
-        case '9': r=3;c=3;break;
+        case '1': r=0;c=0;break;
+        case '2': r=0;c=1;break;
+        case '3': r=0;c=2;break;
+        case '4': r=1;c=0;break;
+        case '5': r=1;c=1;break;
+        case '6': r=1;c=2;break;
+        case '7': r=2;c=0;break;
+        case '8': r=2;c=1;break;
+        case '9': r=2;c=2;break;
         default:
-            r=0;c=0;
+            r=3;c=3;
     }
 }    
 
