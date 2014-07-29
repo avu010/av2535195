@@ -28,8 +28,6 @@ short winner(char[][COL],int, short);   //Determines winner
 void menu();                            //Displays menu
 void reset (char [][COL], int);         //Resets board 
 void file (int, int);                   //Outputs scores to file
-void cntDown(int&, int[]);              //Uses bubble sorting to display 
-                                        //countdown message before game starts
 
 
 //Execution Begins Here:
@@ -202,35 +200,37 @@ bool gameOver(char grid[][COL], int ROW){
     for(int i=1; i<ROW; i++){
         if((grid[i][1]==grid[i][2])&&(grid[i][1]==grid[i][3]))
             over=true;
-        else if ((grid[1][i]==grid[2][i])&&(grid[1][i]==grid[3][i]))
+    }
+    for (int j=1; j<COL; j++){
+        if ((grid[1][j]==grid[2][j])&&(grid[1][j]==grid[3][j]))
             over=true;
     }
-        if ((grid[1][1]==grid[2][2])&&(grid[1][1]==grid[3][3]))
+    
+    if ((grid[1][1]==grid[2][2])&&(grid[1][1]==grid[3][3]))
             over=true;
-        else if ((grid[1][3]==grid[2][2])&&(grid[1][3]==grid[3][1]))
+    else if ((grid[1][3]==grid[2][2])&&(grid[1][3]==grid[3][1]))
             over=true;
-        else if (((grid[1][1]=='X')||(grid[1][1]=='O'))&&
-                ((grid[1][2]=='X')||(grid[1][2]=='O'))&&
-                ((grid[1][3]=='X')||(grid[1][3]=='O'))&&
-                ((grid[2][1]=='X')||(grid[2][1]=='O'))&&
-                ((grid[2][2]=='X')||(grid[2][2]=='O'))&&
-                ((grid[2][3]=='X')||(grid[2][3]=='O'))&&
-                ((grid[3][1]=='X')||(grid[3][1]=='O'))&&
-                ((grid[3][2]=='X')||(grid[3][2]=='O'))&&
-                ((grid[3][3]=='X')||(grid[3][3]=='O')))
+    else if (((grid[1][1]=='X')||(grid[1][1]=='O'))&&
+            ((grid[1][2]=='X')||(grid[1][2]=='O'))&&
+            ((grid[1][3]=='X')||(grid[1][3]=='O'))&&
+            ((grid[2][1]=='X')||(grid[2][1]=='O'))&&
+            ((grid[2][2]=='X')||(grid[2][2]=='O'))&&
+            ((grid[2][3]=='X')||(grid[2][3]=='O'))&&
+            ((grid[3][1]=='X')||(grid[3][1]=='O'))&&
+            ((grid[3][2]=='X')||(grid[3][2]=='O'))&&
+            ((grid[3][3]=='X')||(grid[3][3]=='O')))
             over=true;
-        else
-            over=false;
+    else
+        over=false;
     
     
     //Over=true, Game over
     //Over=false, game not over
     return over;
-}
 
+}
 //Determines winner
 short winner(char grid[][COL], int ROW, short win){
-    win=-1;
     for(int i=1; i<ROW; i++){
         if ((grid[i][1]=='X')&&(grid[i][2]=='X')&&(grid[i][3]=='X')){
             cout<<"Player 1 wins!"<<endl;
@@ -335,7 +335,6 @@ void file (int score1, int score2){
 }
 
     
-void cnDown(int array[]){}
   
     
 
