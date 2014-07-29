@@ -15,19 +15,22 @@ using namespace std;
 //User Libraries
 
 //Global Constants
-
 //Column size of 2D array so I am able to pass as a function
 const int COL=4;
 
 //Function Prototypes
 void welcome();
-void displayGrid(char [][COL], int);    //Displays Tic-Tac-Toe board
-void takeTurn(char [][COL], int , bool); //Places appropriate mark on board 
-bool gameOver(char[][COL], int);        //Determines whether or not game is over
-short winner(char[][COL],int);          //Determines winner
-void menu();                            //Displays menu
-void reset (char [][COL], int);         //Resets board 
-void file (int, int);                   //Outputs scores to file
+void displayGrid(char [][COL], const int);    //Displays Tic-Tac-Toe board
+void takeTurn(char [][COL], const int , bool);//Places appropriate mark on board 
+bool gameOver(char[][COL], const int);  //Determines whether or not game is over
+short winner(char[][COL],const int);          //Determines winner
+void menu();                                  //Displays menu
+void reset (char [][COL], const int);         //Resets board 
+void file (int, const int);                   //Outputs scores to file
+void sort(char[][COL], const int);            //Sorts board
+void swap(char&, char&);                      //Swap values used for sort
+void stall();                 //Stalls program so it can print out sorts slower                                            
+void conversion(char,int&,int&);        //Converts user's choice to coordinates
 
 
 //Execution Begins Here:
@@ -106,12 +109,14 @@ int main(int argc, char** argv) {
         //Output scores to file
         file (score1,score2);  
         
-        //Reset board so user can play again
-        reset(grid, ROW);
-        
         //Ask if player wants to play again
         cout<<"Play again (Y/N)? ";
         cin>>again;
+        
+        sort(grid,ROW);
+        
+        //Reset board so user can play again
+        reset(grid, ROW);
     }while((again=='Y')||(again=='y'));
  
     //Exit Stage Right!
@@ -120,18 +125,17 @@ int main(int argc, char** argv) {
 }
 
 //Function displays grid
-void displayGrid(char grid[][COL], int ROW){
+void displayGrid(char grid[][COL], const int ROW){
     //Board with variables at designated positions
-    cout<<"         COLUMN 1   COLUMN 2    COLUMN 3"<<endl<<endl;
-    cout<<"                  |          |          "<<endl;
-    cout<<"ROW 1       "<<grid[1][1]<<"     |    "<<grid[1][2]<<"     |    "<<grid[1][3]<<endl;
-    cout<<"        __________|__________|__________"<<endl;
-    cout<<"                  |          |          "<<endl;
-    cout<<"ROW 2       "<<grid[2][1]<<"     |    "<<grid[2][2]<<"     |    "<<grid[2][3]<<endl;
-    cout<<"        __________|__________|__________"<<endl;
-    cout<<"                  |          |          "<<endl;
-    cout<<"ROW 3       "<<grid[3][1]<<"     |    "<<grid[3][2]<<"     |    "<<grid[3][3]<<endl;
-    cout<<"                  |          |          "<<endl;
+    cout<<"             |          |          "<<endl;
+    cout<<"       "<<grid[1][1]<<"     |    "<<grid[1][2]<<"     |    "<<grid[1][3]<<endl;
+    cout<<"   __________|__________|__________"<<endl;
+    cout<<"             |          |          "<<endl;
+    cout<<"       "<<grid[2][1]<<"     |    "<<grid[2][2]<<"     |    "<<grid[2][3]<<endl;
+    cout<<"   __________|__________|__________"<<endl;
+    cout<<"             |          |          "<<endl;
+    cout<<"       "<<grid[3][1]<<"     |    "<<grid[3][2]<<"     |    "<<grid[3][3]<<endl;
+    cout<<"             |          |          "<<endl;
 }
 
 //Displays welcome message as well as randomly chooses who plays first
@@ -159,39 +163,36 @@ void welcome(){
 }
 
 //Function places mark on board
-void takeTurn(char grid[][COL], int ROW, bool p1){
+void takeTurn(char grid[][COL], const int ROW, bool p1){
     //Declare Variables
-    unsigned short Cchoice;  //Column where user wants to mark 
-    unsigned short Rchoice;  //Row where user wants to mark
+    char ch;
+    int row;
+    int column;
     
     //Gather Data Input
     //Takes user's choices as long as spaces are available
     do{
         if(p1){
-            cout<<"Player 1's turn "<<endl;
+            cout<<"PLAYER 1'S TURN"<<endl;
         }else{
-            cout<<"Player 2's turn "<<endl;
+            cout<<"PLAYER 2'S TURN"<<endl;
         }
-         cout<<"Row? ";
-        cin>>Rchoice;
-        cout<<"Column? ";
-        cin>>Cchoice;
-    }while(Cchoice>3||Cchoice<0||Rchoice>3||Rchoice<0||grid[Rchoice][Cchoice]
-           =='X'||grid[Rchoice][Cchoice]=='O');
-    
-    
-    
+        cout<<"Enter number: ";
+        cin>>ch;
+        conversion(ch,row,column);
+    }while(row==0||column==0);
+        
     //If player one makes mark, place an X. If player 2, place O.
-    if(p1){
-        grid[Rchoice][Cchoice] = 'X';
-    }
-    else{
-        grid[Rchoice][Cchoice] = 'O';
-    }                      
+        if(p1){
+        grid[row][column] = 'X';
+        }
+        else{
+        grid[row][column] = 'O';
+        }
 }
 
 //Determines whether game is over
-bool gameOver(char grid[][COL], int ROW){
+bool gameOver(char grid[][COL], const int ROW){
     //Declare Variables
     bool over=false;        
     
@@ -232,7 +233,7 @@ bool gameOver(char grid[][COL], int ROW){
     return over;
 }
 //Determines winner
-short winner(char grid[][COL], int ROW){
+short winner(char grid[][COL], const int ROW){
     //Will be used to determine who wins
     short win=-1;
     
@@ -316,7 +317,7 @@ void menu(){
 }
 
 //Resets board
-void reset (char grid[][COL], int ROW){
+void reset (char grid[][COL], const int ROW){
     int num=1;
     for (int i=1; i<ROW; i++){
         for (int j=1; j<COL; j++ ){
@@ -326,6 +327,7 @@ void reset (char grid[][COL], int ROW){
     }
 }
 
+//Reads scores to file
 void file (int score1, int score2){
     //Output scores to file
     ofstream output;
@@ -345,7 +347,61 @@ void file (int score1, int score2){
 
 }
 
+//Sorts grid out after game is over
+void sort(char grid[][COL], const int ROW){
+    const int TOTAL = 16;
+    for(int i=5; i<TOTAL-1; i++){
+        if(i==8||i==12){
+            i++;
+        }
+        else{
+            for(int j=i+1;j<TOTAL;j++){
+                if(j==8||j==12){
+                    j++;
+                }
+                else{
+                    if(grid[0][i]>grid[0][j]){
+                        swap(grid[0][i],grid[0][j]);
+                        displayGrid(grid,ROW);
+                        stall();
+                        cout<<endl;
+                    }
+                    
+                }
+            }
+        }
+    }
     
-  
-    
+
+}   
+
+//Used to swap values in bubble sort
+void swap(char& x, char& y){
+    char temp;
+    temp=x;
+    x=y;
+    y=temp;
+}
+
+//Stalls printing of the graph sorting itself out
+void stall(){
+    for(int i=0;i<140000000;i++);
+}
+
+//Converts user's choice to coordinates on grid
+void conversion(char ch, int &r,int &c){
+    switch(ch){
+        case '1': r=1;c=1;break;
+        case '2': r=1;c=2;break;
+        case '3': r=1;c=3;break;
+        case '4': r=2;c=1;break;
+        case '5': r=2;c=2;break;
+        case '6': r=2;c=3;break;
+        case '7': r=3;c=1;break;
+        case '8': r=3;c=2;break;
+        case '9': r=3;c=3;break;
+        default:
+            r=0;c=0;
+    }
+}    
 
