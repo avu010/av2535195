@@ -24,7 +24,7 @@ void welcome();
 void displayGrid(char [][COL], int);    //Displays Tic-Tac-Toe board
 void takeTurn(char [][COL], int , bool); //Places appropriate mark on board 
 bool gameOver(char[][COL], int);        //Determines whether or not game is over
-short winner(char[][COL],int, short);   //Determines winner
+short winner(char[][COL],int);          //Determines winner
 void menu();                            //Displays menu
 void reset (char [][COL], int);         //Resets board 
 void file (int, int);                   //Outputs scores to file
@@ -91,7 +91,7 @@ int main(int argc, char** argv) {
         displayGrid(grid, ROW);       
 
         //Displays winner
-        win = winner(grid,ROW, win);
+        win = winner(grid,ROW);
 
         //Keep track of scores 
         if (win==1){
@@ -197,19 +197,25 @@ bool gameOver(char grid[][COL], int ROW){
     
     //Determine if game is over
     //Game is over if one of the players wins, or if all the spaces are taken up
+    //Checks for rows
     for(int i=1; i<ROW; i++){
         if((grid[i][1]==grid[i][2])&&(grid[i][1]==grid[i][3]))
             over=true;
     }
+    
+    //Checks for columns
     for (int j=1; j<COL; j++){
         if ((grid[1][j]==grid[2][j])&&(grid[1][j]==grid[3][j]))
             over=true;
     }
     
+    //Checks for diagonals
     if ((grid[1][1]==grid[2][2])&&(grid[1][1]==grid[3][3]))
             over=true;
     else if ((grid[1][3]==grid[2][2])&&(grid[1][3]==grid[3][1]))
             over=true;
+    
+    //Checks for a draw
     else if (((grid[1][1]=='X')||(grid[1][1]=='O'))&&
             ((grid[1][2]=='X')||(grid[1][2]=='O'))&&
             ((grid[1][3]=='X')||(grid[1][3]=='O'))&&
@@ -220,17 +226,17 @@ bool gameOver(char grid[][COL], int ROW){
             ((grid[3][2]=='X')||(grid[3][2]=='O'))&&
             ((grid[3][3]=='X')||(grid[3][3]=='O')))
             over=true;
-    else
-        over=false;
-    
     
     //Over=true, Game over
     //Over=false, game not over
     return over;
-
 }
 //Determines winner
-short winner(char grid[][COL], int ROW, short win){
+short winner(char grid[][COL], int ROW){
+    //Will be used to determine who wins
+    short win=-1;
+    
+    //Loop through rows and columns to see who wins
     for(int i=1; i<ROW; i++){
         if ((grid[i][1]=='X')&&(grid[i][2]=='X')&&(grid[i][3]=='X')){
             cout<<"Player 1 wins!"<<endl;
@@ -246,23 +252,28 @@ short winner(char grid[][COL], int ROW, short win){
             win=0;
         }
     }
-    if ((grid[1][1]=='X')&&(grid[2][2]=='X')&&(grid[3][3]=='X')){
-            cout<<"Player 1 wins!"<<endl;
-            win=1;
-    }else if ((grid[1][1]=='O')&&(grid[2][2]=='O')&&(grid[3][3]=='O')){
-            cout<<"Player 2 wins!"<<endl;
-            win=0;
-    }else if ((grid[1][3]=='X')&&(grid[2][2]=='X')&&(grid[3][1]=='X')){
-            cout<<"Player 1 wins!"<<endl;
-            win=1;
-    }else if ((grid[1][3]=='O')&&(grid[2][2]=='O')&&(grid[3][1]=='O')){
-            cout<<"Player 2 wins!"<<endl;
-            win=0;
-    }else{
-            cout<<"No one wins."<<endl;
-            win=-1;
-    }    
-                                     
+    
+    //Used to find wins in diagonals. Will only execute if no one wins 
+    //with columns and rows
+    if(!(win==1||win==0)){
+        if ((grid[1][1]=='X')&&(grid[2][2]=='X')&&(grid[3][3]=='X')){
+                cout<<"Player 1 wins!"<<endl;
+                win=1;
+        }else if ((grid[1][1]=='O')&&(grid[2][2]=='O')&&(grid[3][3]=='O')){
+                cout<<"Player 2 wins!"<<endl;
+                win=0;
+        }else if ((grid[1][3]=='X')&&(grid[2][2]=='X')&&(grid[3][1]=='X')){
+                cout<<"Player 1 wins!"<<endl;
+                win=1;
+        }else if ((grid[1][3]=='O')&&(grid[2][2]=='O')&&(grid[3][1]=='O')){
+                cout<<"Player 2 wins!"<<endl;
+                win=0;
+        }else{
+                cout<<"No one wins."<<endl;
+                win=-1;
+        }    
+    } 
+    
     //win=1, player 1 wins
     //win=0, player 2 wins
     //win=-1, draw
