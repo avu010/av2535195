@@ -359,7 +359,7 @@ void sort(char grid[][COL], const int ROW){
     //Declare Variables
     const int TOTAL = 9;        //Number of elements in the board
     
-    //Loops through enter array to bubble sort elements
+    //Loops through entire array to bubble sort elements
     for(int i=0; i<TOTAL; i++){
         for(int j=i+1;j<TOTAL;j++){
             if(grid[0][i]>grid[0][j]){
