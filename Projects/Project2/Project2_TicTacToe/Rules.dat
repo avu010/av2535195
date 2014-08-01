@@ -1,0 +1,8 @@
+Rules:
+1. Decide who will be Player 1 or Player 2. 
+2. When making your move, choose a number (1-9) to place your mark.
+3. If you attempt to choose a number lower than 1 or higher than 9, or if that space is already taken, you will be asked to choose  another spot.
+4. Try to get all three of your marks in a row, column, or diagonal row before the other player does.
+5. After each game, choose 'Y' if you want to play again or 'N' if you don't.
+6. If you want to see a tally of your scores, see the text file entitled "scores"
+7. Have fun!
