@@ -19,7 +19,6 @@ using namespace std;
 const int COL=3;        //Size of columns of grid
 
 //Function Prototypes
-//I couldn't figure out where to use default parameters
 void welcome();
 void displayGrid(char[][COL],const int);   //Displays Tic-Tac-Toe board
 void takeTurn(char[][COL],const int,bool); //Places appropriate mark on board 

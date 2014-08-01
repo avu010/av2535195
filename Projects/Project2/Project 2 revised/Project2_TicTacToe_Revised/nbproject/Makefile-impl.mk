@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Project2_TicTacToe
+PROJECTNAME=Project2_TicTacToe_Revised
 
 # Active Configuration
 DEFAULTCONF=Debug

@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=Cygwin_1-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin_1-Windows
-CND_ARTIFACT_NAME_Debug=project2_tictactoe
-CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin_1-Windows/project2_tictactoe
+CND_ARTIFACT_NAME_Debug=project2_tictactoe_revised
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin_1-Windows/project2_tictactoe_revised
 CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin_1-Windows/package
-CND_PACKAGE_NAME_Debug=project2tictactoe.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin_1-Windows/package/project2tictactoe.tar
+CND_PACKAGE_NAME_Debug=project2tictactoerevised.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin_1-Windows/package/project2tictactoerevised.tar
 # Release configuration
 CND_PLATFORM_Release=Cygwin_1-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/Cygwin_1-Windows
-CND_ARTIFACT_NAME_Release=project2_tictactoe
-CND_ARTIFACT_PATH_Release=dist/Release/Cygwin_1-Windows/project2_tictactoe
+CND_ARTIFACT_NAME_Release=project2_tictactoe_revised
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin_1-Windows/project2_tictactoe_revised
 CND_PACKAGE_DIR_Release=dist/Release/Cygwin_1-Windows/package
-CND_PACKAGE_NAME_Release=project2tictactoe.tar
-CND_PACKAGE_PATH_Release=dist/Release/Cygwin_1-Windows/package/project2tictactoe.tar
+CND_PACKAGE_NAME_Release=project2tictactoerevised.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin_1-Windows/package/project2tictactoerevised.tar
 #
 # include compiler specific variables
 #
